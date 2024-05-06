@@ -17,7 +17,7 @@ void *ft_hello(void *arg)
 {
 	int i = 0;
 
-	while (i <= 10)
+	while (i <= 60)
 	{
 		printf("this is\n");
 		i++;
@@ -29,7 +29,7 @@ void *ft_world(void *arg)
 {
 	int i = 0;
 
-	while (i <= 10)
+	while (i <= 60)
 	{
 		printf("        a test\n");
 		i++;
@@ -42,6 +42,7 @@ void test_1()
 	ft_hello(NULL);
 	ft_world(NULL);
 }
+
 
 void test_2()
 {
@@ -68,7 +69,14 @@ void test_2()
 
 void test_3()
 {
+	int *p_num;
+	pthread_t t1;
+	pthread_t t2;
 
+	p_num = malloc(sizeof(int));
+	if(p_num == NULL)
+		exit(1);
+	*p_num = 0;
 }
 
 int main()
