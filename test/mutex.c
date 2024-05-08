@@ -5,6 +5,25 @@
 
 // MUTEX : MUTual EXclusion
 // free mutex > pthread_mutex_destroy
+// mutex est une 'primitive de synchronisation' (?)
+
+/*Une primitive de synchronisation est un terme informatique qui désigne
+une instruction simple qui permet la synchronisation de processus.
+
+Une primitive courante est l'exclusion mutuelle, ou verrou, qui permet
+à un processus d'être seul à effectuer la tâche ou à accéder la donnée
+protégée par ce verrou. Les barrières permettent d'établir un point d'attente
+pour plusieurs processus pour ne reprendre l'exécution
+qu'après que tous l'aient atteint.
+
+Les fonctions "wait" et "waitpid" disponibles dans les programmes
+ C pour UNIX2, par exemple, sont des primitives de synchronisation
+ permettant à un programme d’attendre qu’un de
+ ses programmes fils ait terminé son exécution. */
+
+// _Atomic variable <<<<<
+
+
 typedef struct data_s
 {
     int nb;
