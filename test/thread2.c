@@ -22,7 +22,7 @@ int main() {
 	printf("Main thread is waiting for thread 1 to finish...\n");
 	sleep(3);
 
-	pthread_join(thread1, NULL);
+	spthread_join(thread1, NULL);
 	printf("Main thread continues after thread 1 finished.\n");
 	sleep(3);
 

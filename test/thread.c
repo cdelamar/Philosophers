@@ -107,6 +107,9 @@ void test_3()
 	if (res_t2 != 0)
 		exit(1);
 
+	printf ("t1 : %lu\n", (unsigned long)t1);
+	printf ("t2 : %lu\n\n\n", (unsigned long)t2);
+
 	join_t1 = pthread_join(t1, NULL);
 	if (join_t1 != 0)
 		exit(1);
@@ -121,5 +124,8 @@ void test_3()
 
 int main()
 {
+	pthread_t main_id = pthread_self();
+	printf("main ID : %lu\n\n\n", (unsigned long)main_id);
+
 	test_3();
 }
