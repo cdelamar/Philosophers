@@ -12,8 +12,6 @@
 
 NAME = philo
 
-LIBFT = lib/libft.a
-
 GCC = gcc
 
 CFLAGS =	-g -Wall -Wextra -Werror \

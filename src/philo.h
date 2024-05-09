@@ -11,11 +11,15 @@
 #include <string.h>
 #include <stdio.h>
 
-# define TAKE_A_FORK 	"take a fork"
+# define INVALID_ARGC	"invalid or wrong number of arguments"
+# define WRONG_MEAL_NB	"pick a correct amount of times each philosopher must eat"
+# define INPUT_NOT_NB	"inputs are not numbers"
+
+# define TAKE_A_FORK 	"has taken a fork"
 # define IS_THINKING 	"is thinking"
 # define IS_SLEEPING	"is sleeping"
 # define IS_EATING		"is eating"
-# define IS_DEAD 		"is dead"
+# define IS_DEAD 		"died"
 
 # define THINK	0
 # define SLEEP	1
@@ -25,10 +29,10 @@
 typedef struct s_data
 {
 	int philo_nb;	// atoi(argv[1])
-	int death_time;	// atoi(argv[2])
-	int eat_time;	// atoi(argv[3])
-	int sleep_time;	// atoi(argv[4])
-	int meal_nb; 	// atoi(argv[5]) :optionnal
+	u_int64_t death_time;	// atoi(argv[2])
+	u_int64_t eat_time;	// atoi(argv[3])
+	u_int64_t sleep_time;	// atoi(argv[4])
+	u_int64_t meal_nb; 	// atoi(argv[5]) :optionnal
 } t_data;
 
 typedef struct s_philo
@@ -45,5 +49,13 @@ typedef struct s_philo
 
 	t_data			*data; // testing this concept
 } t_philo;
+
+int		is_number(char c);
+int		init_malloc_data (int argc, char **argv, t_data *data);
+
+void	error_message(char *str);
+
+bool	valid_inputs(int argc, char **argv, t_data *data, t_philo *philo);
+bool	check_arguments(int argc, char **argv, t_data *data, t_philo *philo);
 
 #endif
