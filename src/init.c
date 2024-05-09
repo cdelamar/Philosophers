@@ -1,5 +1,5 @@
 #include "philo.h"
-
+/*
 int init_malloc_data (int argc, char **argv, t_data *data)
 {
 	data->philo_nb = atoi(argv[1]);
@@ -10,4 +10,4 @@ int init_malloc_data (int argc, char **argv, t_data *data)
 		data->meal_nb = atoi(argv[5]);
 
 	return (malloc(sizeof(t_data)));
-}
+}*/

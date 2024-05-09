@@ -13,7 +13,7 @@
 
 # define INVALID_ARGC	"invalid or wrong number of arguments"
 # define WRONG_MEAL_NB	"pick a correct amount of times each philosopher must eat"
-# define INPUT_NOT_NB	"inputs are not numbers"
+# define INPUT_NOT_NB	"inputs are not positives numbers"
 
 # define TAKE_A_FORK 	"has taken a fork"
 # define IS_THINKING 	"is thinking"
@@ -54,8 +54,9 @@ int		is_number(char c);
 int		init_malloc_data (int argc, char **argv, t_data *data);
 
 void	error_message(char *str);
+void	ft_putendl_fd(char *s, int fd);
 
-bool	valid_inputs(int argc, char **argv, t_data *data, t_philo *philo);
-bool	check_arguments(int argc, char **argv, t_data *data, t_philo *philo);
+bool	valid_inputs(int argc, char **argv);
+bool	check_arguments(int argc, char **argv);
 
 #endif

@@ -8,11 +8,11 @@ void	error_message(char *str)
 
 int main (int argc, char **argv)
 {
-	t_data	*data;
-	t_philo	*philo;
+	//t_data	*data;
+	//t_philo	*philo;
 
-	if (check_arguments(argc, argv, data, philo) == true);
-	printf("ok\n");
+	if (check_arguments(argc, argv) == true)
+		printf("ok good\n");
 	// init_data value
-
+	return (0);
 }
