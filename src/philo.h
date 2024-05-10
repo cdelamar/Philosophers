@@ -51,7 +51,7 @@ typedef struct s_philo
 } t_philo;
 
 int		is_number(char c);
-int		init_malloc_data (int argc, char **argv, t_data *data);
+t_data		*init_malloc_data (int argc, char **argv, t_data *data);
 
 void	error_message(char *str);
 void	ft_putendl_fd(char *s, int fd);

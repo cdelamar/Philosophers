@@ -8,11 +8,14 @@ void	error_message(char *str)
 
 int main (int argc, char **argv)
 {
-	//t_data	*data;
+	t_data	*data = NULL;
 	//t_philo	*philo;
 
 	if (check_arguments(argc, argv) == true)
 		printf("ok good\n");
+	if (init_malloc_data(argc,argv, data) != NULL)
+		printf("malloc ok\n");
 	// init_data value
+	free(data);
 	return (0);
 }
