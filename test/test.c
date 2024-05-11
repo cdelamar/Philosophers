@@ -12,6 +12,14 @@
 #define RIGHT (phnum + 1) % N
 
 
+// TODO
+/*
+preparing custom usleep function
+focus on race condition solution 
+*/
+
+
+
 int state[N];
 int phil[N] = {0, 1, 2, 3, 4};
 
