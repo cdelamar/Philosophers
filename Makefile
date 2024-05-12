@@ -40,6 +40,8 @@ fclean : clean
 
 
 re: fclean all
+#-g #-fsanitize=thread
+# valgrind --tool=helgrind
 
 $(NAME): $(OBJS) $(LIBFT)
 	@echo "\033[32m✔ Compilating sources files...\033[37m"

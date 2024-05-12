@@ -13,6 +13,10 @@
 //     suseconds_t tv_usec;    // microseconds
 // };
 
+// valgrind tool for race condition
+// valgrind --tool=helgrind
+// ex : valgrind --tool=helgrind ./philo 5 640 450 450
+
 int main()
 {
 	struct timeval time;
