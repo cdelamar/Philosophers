@@ -121,36 +121,29 @@ void* philospher(void* num)
 }
 
 
-int main()
+#include <semaphore.h>
+#include <sys/time.h>
+#include <pthread.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
+void *routine (void *arg)
 {
+    int *test = (int *)arg;
+    printf("ok\n");
+    return NULL;
+}
 
-    int i;
+int main()
+{
+    pthread_t thid;
+    int i = 1;
 
-    pthread_t thread_id[N];
-
-
-    sem_init(&mutex, 0, 1);
-
-
-    for (i = 0; i < N; i++)
-
-        sem_init(&S[i], 0, 0);
-
-
-    for (i = 0; i < N; i++)
-
-    {
-
-        pthread_create(&thread_id[i], NULL, philospher, &phil[i]);
-
-        printf("Philosopher %d is thinking\n", i);
-
-    }
-
-
-    for (i = 0; i < N; i++)
-
-        pthread_join(thread_id[i], NULL);
-
+    int create = pthread_create(&thid, NULL, routine, (void *)&i);
+    printf("create\n");
+    int join = pthread_join(thid, NULL);
+    printf("join\n");
+    return 0;
 }
