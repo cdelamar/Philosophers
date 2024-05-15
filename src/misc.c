@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:30:01 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/13 10:30:01 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:54:10 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,3 +49,20 @@ bool valid_inputs(int argc, char **argv)
 	}
 	return (true);
 }
+// TODO : FIX (bigger numbers than 2147483647 are passing sometimes)
+bool min_max_value(int argc, char **argv)
+{
+	int i;
+
+	i = 0;
+	while (i < argc)
+	{
+		if (atoi(argv[i]) > 2147483647)
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+
+
