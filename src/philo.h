@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:30:08 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/13 10:30:11 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/15 05:34:05 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_data
 	u_int64_t eat_time;	// atoi(argv[3])
 	u_int64_t sleep_time;	// atoi(argv[4])
 	u_int64_t meal_nb; 	// atoi(argv[5]) :optionnal
+	//u_int64_t start_time;
 } t_data;
 
 typedef struct s_philo
@@ -63,12 +64,12 @@ typedef struct s_philo
 } t_philo;
 
 int		is_number(char c);
-t_data		*init_malloc_data (int argc, char **argv, t_data *data);
+t_data *init_data (int argc, char **argv);
 
 void	error_message(char *str);
 void	ft_putendl_fd(char *s, int fd);
 
 bool	valid_inputs(int argc, char **argv);
-bool	check_arguments(int argc, char **argv);
+char	*check_arguments(int argc, char **argv);
 
 #endif

@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <sys/time.h>
 #include <pthread.h>
 
-void *thread_function(void *arg) {
+void *thread_function(void *arg)
+{
 	int *thread_id = (int *)arg;
 	printf("Thread %d is starting...\n", *thread_id);
 	sleep(2);
@@ -11,7 +13,8 @@ void *thread_function(void *arg) {
 	pthread_exit(NULL);
 }
 
-int main() {
+int main()
+{
 	pthread_t thread1, thread2;
 	int id1 = 1, id2 = 2;
 
@@ -31,6 +34,5 @@ int main() {
 
 	pthread_join(thread2, NULL);
 	printf("Main thread continues after thread 2 finished.\n");
-
 	return 0;
 }

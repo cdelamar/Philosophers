@@ -34,7 +34,6 @@ void test()
 
 int main()
 {
-
 	struct timeval time;
 
 	gettimeofday(&time, NULL);
