@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:29:57 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/16 03:30:27 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/16 23:12:42 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ int main (int argc, char **argv)
 	data = init_data(argc, argv);
 	if (data == NULL)
 		return (EXIT_FAILURE);
-	init_philo(data, philo);
+	philo = init_philo(data);
 	thread_launcher(data, philo);
-	// uint64_t test_timer2 = ft_time() - data->start_time;
+	free(data);
+	free(philo);
 	return (EXIT_SUCCESS);
 }
 

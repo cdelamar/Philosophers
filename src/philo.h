@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:30:08 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/16 03:19:42 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/16 23:13:52 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_philo
 	pthread_mutex_t	mutx_eat_t;
 	pthread_mutex_t	mutx_die_t;
 
-	t_data			*data; // testing this concept
+	//t_data			*data; // testing this concept
 } t_philo;
 
 uint64_t	ft_time();
@@ -76,7 +76,7 @@ bool		min_max_value(int argc, char **argv);
 char		*check_arguments(int argc, char **argv);
 t_data		*init_data (int argc, char **argv);
 
-void		init_philo (t_data *data, t_philo *philo);
+t_philo		*init_philo (t_data *data);
 t_philo		create_philo(t_data *data);
 void		thread_launcher (t_data *data, t_philo *philo);
 void		*routine (void *arg);

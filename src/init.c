@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:29:54 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/16 03:33:04 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/16 23:14:12 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,10 @@ t_data *init_data (int argc, char **argv)
 	return data;
 }
 
-void init_philo (t_data *data, t_philo *philo)
+t_philo *init_philo (t_data *data)
 {
 	int		i;
+	t_philo *philo;
 
 	i = 0;
 	philo = malloc(sizeof(t_philo) * data->philo_nb); // +1 ?
@@ -49,9 +50,10 @@ void init_philo (t_data *data, t_philo *philo)
 	while(i < data->philo_nb)
 	{
 		philo[i] = create_philo(data);
+		printf("creating philo slot %d\n", i);
 		philo->index = i + 1;
 		i++;
 		usleep(1);
 	}
-	return;
+	return (philo);
 }
