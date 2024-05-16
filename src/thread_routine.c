@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phtread_routine.c                                  :+:      :+:    :+:   */
+/*   thread_routine.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 23:45:17 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/16 02:23:07 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/16 02:25:43 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void thread_launcher (t_data *data, t_philo *philo)
 	i = 0;
 	while (i < data->philo_nb)
 	{
-		pthread_create(philo[i].thid, NULL, routine, &philo[i]);
+		pthread_create(&philo[i].thid, NULL, routine, &philo[i]);
 		usleep(1000);
 		i++;
 	}
