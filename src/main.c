@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:29:57 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/15 17:58:46 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/16 02:19:31 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,8 @@ void	error_message(char *str)
 int main (int argc, char **argv)
 {
 	t_data	*data;
-	//t_philo	*philo;
+	t_philo	*philo;
 
-	//(void)philo;
 	if (check_arguments(argc, argv) != NULL)
 	{
 		error_message(check_arguments(argc, argv));
@@ -31,9 +30,10 @@ int main (int argc, char **argv)
 	data = init_data(argc, argv);
 	if (data == NULL)
 		return (EXIT_FAILURE);
-	printf("the code has been initialized at : %lu\n", data->start_time - ft_time());
-	sleep(2);
-	uint64_t test_timer2 = ft_time() - data->start_time;
-	printf("2nd call at : %lu\n", test_timer2);
+	philo = init_philo(data);
+	if (philo == NULL)
+		return (EXIT_FAILURE);
+	thread_launcher(data, philo);
+	// uint64_t test_timer2 = ft_time() - data->start_time;
 	return (EXIT_SUCCESS);
 }

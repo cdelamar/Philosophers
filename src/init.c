@@ -6,13 +6,13 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:29:54 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/15 17:48:55 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/16 02:20:48 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-/*
-t_philo create_philo(t_philo *philo, t_data *data)
+
+t_philo create_philo(t_data *data)
 {
 	t_philo output;
 
@@ -20,9 +20,9 @@ t_philo create_philo(t_philo *philo, t_data *data)
 	output.alive = true;
 	output.take_fork_left = false;
 	output.take_fork_right = false;
-	//time
+	output.time = ft_time() - data->start_time;
 	return (output);
-}*/
+}
 
 t_data *init_data (int argc, char **argv)
 {
@@ -38,8 +38,8 @@ t_data *init_data (int argc, char **argv)
 	data->start_time = ft_time();
 	return data;
 }
-/*
-t_philo *init_philo (t_data *data, t_philo *philo)
+
+t_philo *init_philo (t_data *data)
 {
 	t_philo *output;
 	int		i;
@@ -49,6 +49,9 @@ t_philo *init_philo (t_data *data, t_philo *philo)
 
 	while(i < data->philo_nb)
 	{
-		output[i] = create_philo(&output[i], data);
+		output[i] = create_philo(data);
+		output->index = i + 1;
+		i++;
 	}
-}*/
+	return (output);
+}

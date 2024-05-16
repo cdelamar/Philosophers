@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:30:08 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/15 17:22:53 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/16 02:19:17 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_data
 typedef struct s_philo
 {
 	int				state;
+	int				index;
 	bool			alive;
 	bool			take_fork_left;
 	bool			take_fork_right;
@@ -74,5 +75,10 @@ bool		valid_inputs(int argc, char **argv);
 bool		min_max_value(int argc, char **argv);
 char		*check_arguments(int argc, char **argv);
 t_data		*init_data (int argc, char **argv);
+
+t_philo *init_philo (t_data *data);
+t_philo create_philo(t_data *data);
+void thread_launcher (t_data *data, t_philo *philo);
+void *routine (void *arg);
 
 #endif
