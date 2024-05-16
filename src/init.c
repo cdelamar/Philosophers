@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:29:54 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/16 02:20:48 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/16 03:33:04 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,19 @@ t_data *init_data (int argc, char **argv)
 	return data;
 }
 
-t_philo *init_philo (t_data *data)
+void init_philo (t_data *data, t_philo *philo)
 {
-	t_philo *output;
 	int		i;
 
 	i = 0;
-	output = malloc(sizeof(t_philo) * data->philo_nb); // +1 ?
+	philo = malloc(sizeof(t_philo) * data->philo_nb); // +1 ?
 
 	while(i < data->philo_nb)
 	{
-		output[i] = create_philo(data);
-		output->index = i + 1;
+		philo[i] = create_philo(data);
+		philo->index = i + 1;
 		i++;
+		usleep(1);
 	}
-	return (output);
+	return;
 }

@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:30:08 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/16 02:26:42 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/16 03:19:42 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ bool		min_max_value(int argc, char **argv);
 char		*check_arguments(int argc, char **argv);
 t_data		*init_data (int argc, char **argv);
 
-t_philo		*init_philo (t_data *data);
+void		init_philo (t_data *data, t_philo *philo);
 t_philo		create_philo(t_data *data);
 void		thread_launcher (t_data *data, t_philo *philo);
 void		*routine (void *arg);
