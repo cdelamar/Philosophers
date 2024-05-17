@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 00:27:43 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/17 06:47:08 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/17 18:50:12 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,7 @@ bool all_philos_alive (t_data *data, t_philo *philo)
 	return (true);
 }
 
-int death_crawler(t_data *data, t_philo *philo)
-{
-	unsigned int    i;
-
-	i = 0;
+int death_crawler(t_data *data, t_philo *philo)rougon macquart
 	while (i < data->philo_nb)
 	{
 		if (philo[i].last_eat_time < data->eat_time || philo[i].last_sleep_time < data->sleep_time)
@@ -59,7 +55,7 @@ int death_crawler(t_data *data, t_philo *philo)
 	}
 
 	return (0);
-}*/
+}
 
 void *routine (void *arg)
 {
@@ -70,4 +66,4 @@ void *routine (void *arg)
 		eating(philo);
 
 	return;
-}
+}*/

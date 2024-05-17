@@ -6,7 +6,7 @@
 #    By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 21:54:20 by cdelamar          #+#    #+#              #
-#    Updated: 2024/05/17 18:27:21 by cdelamar         ###   ########.fr        #
+#    Updated: 2024/05/17 18:35:38 by cdelamar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,11 @@ LFLAGS =	-Llib -pthread\
 SRC_DIR = src/
 OBJ_DIR = obj/
 FILES =	main \
-		check \
+		forks\
 		init \
 		misc \
+		state \
+		routine \
 		thread_routine
 
 SRCS = $(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
