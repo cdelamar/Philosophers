@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:30:01 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/15 15:54:10 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/17 02:28:15 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,50 @@ bool min_max_value(int argc, char **argv)
 		i++;
 	}
 	return (true);
+}
+
+uint64_t	ft_atoi64_t(const char *nptr)
+{
+	uint64_t	num;
+	int			i;
+
+	num = 0;
+	i = 0;
+
+	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == ' ')
+		i++;
+	if (nptr[i] == '+')
+		i++;
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		num = num * 10 + (nptr[i] - '0');
+		i++;
+	}
+	return (num);
+}
+
+
+int	ft_atoi(const char *nptr)
+{
+	int	sign;
+	int	num;
+
+	sign = 1;
+	num = 0;
+	while ((*nptr >= 9 && *nptr <= 13) || *nptr == ' ')
+		nptr++;
+	if (*nptr == '-' || *nptr == '+')
+	{
+		if (*nptr == '-')
+			sign = -1;
+		nptr++;
+	}
+	while (*nptr >= '0' && *nptr <= '9')
+	{
+		num = num * 10 + (*nptr - '0');
+		nptr++;
+	}
+	return (num * sign);
 }
 
 

@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 00:27:43 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/17 01:59:21 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/17 02:28:57 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 
 bool all_philos_alive (t_data *data, t_philo *philo)
 {
-    int i;
+    unsigned int    i;
 
     i = 0;
     while (i < data->philo_nb)
@@ -40,10 +40,15 @@ bool all_philos_alive (t_data *data, t_philo *philo)
     }
     return (true);
 }
+/*
+int ft_death(t_data *data, t_philo *philo)
+{
+    if (philo[i].)
+}
 
 void *routine (void *arg)
 {
 
 
     return;
-}
+}*/

@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 23:45:17 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/17 01:48:32 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/17 02:28:28 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void *routine (void *arg)
 
 void thread_launcher (t_data *data, t_philo *philo)
 {
-	int i;
+	unsigned int	i;
 
 	i = 0;
 	while (i < data->philo_nb)

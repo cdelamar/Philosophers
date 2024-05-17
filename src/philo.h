@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:30:08 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/17 02:04:39 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/17 02:36:28 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ typedef enum e_state
 // TODO : define const int variable
 typedef struct s_data
 {
-	int 	philo_nb;	// atoi(argv[1])
-	int		death_time;	// atoi(argv[2])
-	int		eat_time;	// atoi(argv[3])
-	int		sleep_time;	// atoi(argv[4])
-	int		meal_nb; 	// atoi(argv[5]) :optionnal
-	uint64_t start_time;
+	unsigned int	philo_nb;	// atoi(argv[1])
+	uint64_t		death_time;	// atoi(argv[2])
+	uint64_t		eat_time;	// atoi(argv[3])
+	uint64_t		sleep_time;	// atoi(argv[4])
+	uint64_t		meal_nb; 	// atoi(argv[5]) :optionnal
+	uint64_t		start_time;
 } t_data;
 
 typedef struct s_philo
@@ -89,5 +89,10 @@ t_philo		*init_philo (t_data *data);
 t_philo		create_philo(t_data *data, int is);
 void		thread_launcher (t_data *data, t_philo *philo);
 void		*routine (void *arg);
+
+int			ft_atoi(const char *nptr);
+uint64_t	ft_atoi64_t(const char *nptr);
+
+bool all_philos_alive (t_data *data, t_philo *philo);
 
 #endif

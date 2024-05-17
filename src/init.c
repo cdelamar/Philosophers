@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:29:54 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/17 01:35:36 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/17 02:36:33 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,20 @@ t_data *init_data (int argc, char **argv)
 	t_data *data;
 
 	data = malloc(sizeof(t_data));
-	data->philo_nb = atoi(argv[1]);
-	data->death_time = atoi(argv[2]);
-	data->eat_time = atoi(argv[3]);
-	data->sleep_time = atoi(argv[4]);
+	data->philo_nb = ft_atoi(argv[1]);
+	data->death_time = ft_atoi64_t(argv[2]);
+	data->eat_time = ft_atoi64_t(argv[3]);
+	data->sleep_time = ft_atoi64_t(argv[4]);
 	if (argc == 6)
-		data->meal_nb = atoi(argv[5]);
+		data->meal_nb = ft_atoi64_t(argv[5]);
 	data->start_time = ft_time();
 	return data;
 }
 
 t_philo *init_philo (t_data *data)
 {
-	int		i;
-	t_philo *philo;
+	unsigned int	i;
+	t_philo 		*philo;
 
 	i = 0;
 	philo = malloc(sizeof(t_philo) * data->philo_nb); // +1 ?
