@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:29:54 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/17 02:36:33 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/17 06:17:25 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ t_philo create_philo(t_data *data, int i)
 
 	philo.state = IDLE;
 	philo.alive = true;
-	philo.take_fork_left = false;
-	philo.take_fork_right = false;
+	philo.left_fork = false;
+	philo.right_fork = false;
 	philo.time = ft_time() - data->start_time;
 	philo.index = i + 1;
 	return (philo);

@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:30:01 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/17 02:28:15 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/17 03:16:42 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ bool min_max_value(int argc, char **argv)
 	}
 	return (true);
 }
-
+// WARNING : OVERFLOW NOT HANDLED
 uint64_t	ft_atoi64_t(const char *nptr)
 {
 	uint64_t	num;

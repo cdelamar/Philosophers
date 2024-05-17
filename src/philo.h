@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:30:08 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/17 02:36:28 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/17 06:17:16 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ typedef enum e_state
 	DIE = 4
 } t_state;
 
-// TODO : define const int variable
 typedef struct s_data
 {
 	unsigned int	philo_nb;	// atoi(argv[1])
@@ -59,12 +58,12 @@ typedef struct s_philo
 	int				index;
 
 	bool			alive;
-	bool			take_fork_left;
-	bool			take_fork_right;
+	bool			left_fork;
+	bool			right_fork;
 
-	u_int64_t		last_meal_time;
-	u_int64_t		last_sleep_time;
-	u_int64_t		time; // obsolete ?
+	uint64_t		last_eat_time;
+	uint64_t		last_sleep_time;
+	uint64_t		time; // obsolete ?
 
 	pthread_t		thid;
 
