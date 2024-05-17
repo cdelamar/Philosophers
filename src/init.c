@@ -6,22 +6,23 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:29:54 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/16 23:14:12 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/17 01:35:36 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_philo create_philo(t_data *data)
+t_philo create_philo(t_data *data, int i)
 {
-	t_philo output;
+	t_philo philo;
 
-	output.state = IDLE;
-	output.alive = true;
-	output.take_fork_left = false;
-	output.take_fork_right = false;
-	output.time = ft_time() - data->start_time;
-	return (output);
+	philo.state = IDLE;
+	philo.alive = true;
+	philo.take_fork_left = false;
+	philo.take_fork_right = false;
+	philo.time = ft_time() - data->start_time;
+	philo.index = i + 1;
+	return (philo);
 }
 
 t_data *init_data (int argc, char **argv)
@@ -49,11 +50,12 @@ t_philo *init_philo (t_data *data)
 
 	while(i < data->philo_nb)
 	{
-		philo[i] = create_philo(data);
-		printf("creating philo slot %d\n", i);
-		philo->index = i + 1;
+		philo[i] = create_philo(data, i);
+		pthread_mutex_init(&philo[i].mutx_die, NULL);
+		pthread_mutex_init(&philo[i].mutx_eat, NULL);
+		pthread_mutex_init(&philo[i].mutx_forks, NULL);
 		i++;
-		usleep(1);
+		usleep(1); // why not without usleep
 	}
 	return (philo);
 }

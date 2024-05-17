@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 23:45:17 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/16 23:03:19 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/17 01:48:32 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void *routine (void *arg)
 {
-	t_philo *philo = (t_philo*) arg;
+	t_philo *philo;
+
+	philo = (t_philo*) arg;
 	printf("Philo number %d has arrived !\n", philo->index);
 	usleep(10);
 	return (NULL);
@@ -27,9 +29,7 @@ void thread_launcher (t_data *data, t_philo *philo)
 	i = 0;
 	while (i < data->philo_nb)
 	{
-		printf("avant le drame \n");
 		pthread_create(&philo[i].thid, NULL, routine, &philo[i]);
-		printf("apres le drame \n");
 		usleep(100);
 		i++;
 	}

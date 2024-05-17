@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:30:08 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/16 23:13:52 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/17 02:04:39 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,14 @@
 # define IS_EATING		"is eating"
 # define IS_DEAD 		"died"
 
-# define IDLE	0
-# define THINK	1
-# define SLEEP	2
-# define EAT	3
-# define DIE	4
+typedef enum e_state
+{
+	IDLE = 0,
+	THINK = 1,
+	SLEEP = 2,
+	EAT = 3,
+	DIE = 4
+} t_state;
 
 // TODO : define const int variable
 typedef struct s_data
@@ -53,18 +56,24 @@ typedef struct s_data
 
 typedef struct s_philo
 {
-	int				state;
 	int				index;
+
 	bool			alive;
 	bool			take_fork_left;
 	bool			take_fork_right;
-	u_int64_t		time;
-	pthread_t		thid;
-	pthread_mutex_t	mutx_sleep_t;
-	pthread_mutex_t	mutx_eat_t;
-	pthread_mutex_t	mutx_die_t;
 
-	//t_data			*data; // testing this concept
+	u_int64_t		last_meal_time;
+	u_int64_t		last_sleep_time;
+	u_int64_t		time; // obsolete ?
+
+	pthread_t		thid;
+
+	pthread_mutex_t	mutx_forks;
+	pthread_mutex_t	mutx_eat;
+	pthread_mutex_t	mutx_die;
+
+	t_state			state;
+
 } t_philo;
 
 uint64_t	ft_time();
@@ -77,7 +86,7 @@ char		*check_arguments(int argc, char **argv);
 t_data		*init_data (int argc, char **argv);
 
 t_philo		*init_philo (t_data *data);
-t_philo		create_philo(t_data *data);
+t_philo		create_philo(t_data *data, int is);
 void		thread_launcher (t_data *data, t_philo *philo);
 void		*routine (void *arg);
 
