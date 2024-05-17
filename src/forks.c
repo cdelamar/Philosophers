@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 06:00:01 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/17 06:39:22 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/17 18:19:30 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@ bool right_fork_available (t_philo *philo)
 
 void take_left_fork (t_philo *philo)
 {
-
+    if (left_fork_available(philo))
+        philo->left_fork = true;
 }
-
+/*
 void take_right_fork (t_philo *philo)
 {
-    
-}
+
+}*/

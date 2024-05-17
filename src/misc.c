@@ -6,11 +6,21 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:30:01 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/17 03:16:42 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:28:25 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+uint64_t ft_time()
+{
+    struct timeval  tv;
+    uint64_t output;
+
+    gettimeofday(&tv, NULL);
+    output = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
+    return (output);
+}
 
 void	ft_putendl_fd(char *s, int fd)
 {
