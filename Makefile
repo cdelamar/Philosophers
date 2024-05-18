@@ -27,7 +27,7 @@ FILES =	main \
 		misc \
 		state \
 		routine \
-		thread_routine
+		thread
 
 SRCS = $(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
 OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES)))
