@@ -120,14 +120,14 @@ int	ft_atoi(const char *nptr)
 
 void free_mutex (t_data *data, t_philo *philo)
 {
-	int	i;
+	unsigned int	i;
 	i = 0;
 
 	while (i < data->philo_nb)
 	{
-		pthread_cond_destroy(&philo[i].mutx_die);
-		pthread_cond_destroy(&philo[i].mutx_eat);
-		pthread_cond_destroy(&philo[i].mutx_forks);
+		pthread_mutex_destroy(&philo[i].mutx_die);
+		pthread_mutex_destroy(&philo[i].mutx_eat);
+		pthread_mutex_destroy(&philo[i].mutx_forks);
 		i++;
 	}
 }

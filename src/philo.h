@@ -67,7 +67,9 @@ typedef struct s_philo
 
 	pthread_t		thid;
 
-	pthread_mutex_t	mutx_forks;
+	pthread_mutex_t	mutx_fork;
+	pthread_mutex_t	*mutx_next_fork;
+
 	pthread_mutex_t	mutx_eat;
 	pthread_mutex_t	mutx_die;
 
