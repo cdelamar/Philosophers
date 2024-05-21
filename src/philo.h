@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:30:08 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/21 09:26:38 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/21 10:07:12 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ uint64_t	ft_atoi64_t(const char *nptr);
 
 int			take_fork(t_philo *philo);
 int			eating (t_philo *philo);
-
-
+int			sleeping (t_philo *philo);
+int			thinking (t_philo *philo);
+int			dying (t_philo *philo);
 #endif
