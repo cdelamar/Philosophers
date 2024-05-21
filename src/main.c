@@ -6,9 +6,11 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:29:57 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/17 02:33:50 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/21 09:36:41 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+// TODO : get time()
 
 #include "philo.h"
 

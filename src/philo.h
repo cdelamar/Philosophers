@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:30:08 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/17 06:17:16 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/21 09:26:38 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ typedef struct s_philo
 	int				index;
 
 	bool			alive;
-	bool			left_fork;
-	bool			right_fork;
+	// bool			left_fork;
+	// bool			right_fork;
 
 	uint64_t		last_eat_time;
 	uint64_t		last_sleep_time;
@@ -67,14 +67,13 @@ typedef struct s_philo
 
 	pthread_t		thid;
 
-	pthread_mutex_t	mutx_fork;
-	pthread_mutex_t	*mutx_next_fork;
-
-	pthread_mutex_t	mutx_eat;
-	pthread_mutex_t	mutx_die;
+	pthread_mutex_t	mx_left_fork;
+	pthread_mutex_t	*mx_right_fork;
+	pthread_mutex_t	mx_eat;
+	pthread_mutex_t	mx_die;
 
 	t_state			state;
-
+	t_data			*data;
 } t_philo;
 
 uint64_t	ft_time();
@@ -94,6 +93,10 @@ void		*routine (void *arg);
 int			ft_atoi(const char *nptr);
 uint64_t	ft_atoi64_t(const char *nptr);
 
-bool all_philos_alive (t_data *data, t_philo *philo);
+// bool all_philos_alive (t_data *data, t_philo *philo);
+
+int			take_fork(t_philo *philo);
+int			eating (t_philo *philo);
+
 
 #endif

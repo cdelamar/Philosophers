@@ -6,12 +6,13 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 23:45:17 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/17 02:28:28 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/21 09:34:10 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/*
 void *routine (void *arg)
 {
 	t_philo *philo;
@@ -20,7 +21,7 @@ void *routine (void *arg)
 	printf("Philo number %d has arrived !\n", philo->index);
 	usleep(10);
 	return (NULL);
-}
+}*/
 
 void thread_launcher (t_data *data, t_philo *philo)
 {
@@ -30,7 +31,7 @@ void thread_launcher (t_data *data, t_philo *philo)
 	while (i < data->philo_nb)
 	{
 		pthread_create(&philo[i].thid, NULL, routine, &philo[i]);
-		usleep(100);
+		usleep(999999);
 		i++;
 	}
 	i = 0;
