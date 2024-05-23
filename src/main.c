@@ -6,13 +6,32 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:29:57 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/21 09:36:41 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/23 03:18:14 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // TODO : get time()
 
+// TODO +++
+// program a proper fork management
+
 #include "philo.h"
+
+bool nobody_died (t_philo *philo)
+{
+	unsigned int i;
+
+	i = 0;
+	while (i < philo->data->philo_nb)
+	{
+		printf (">>>> L >>>> philo[%d].data->eat_time = %lu\n", i, philo[i].data->eat_time);
+		printf (">    R    > philo[%d].last_eat_time = %lu\n", i, philo[i]. last_eat_time);
+		if (philo[i].last_eat_time > philo[i].data->eat_time)
+			return (false);
+		i++;
+	}
+	return (true);
+}
 
 void	error_message(char *str)
 {

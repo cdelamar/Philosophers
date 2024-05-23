@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 05:55:22 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/21 10:15:49 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/23 06:00:45 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@
 int eating (t_philo *philo)
 {
     philo->state = EAT;
-    printf("philo %d is eating\n", philo->index);
+    if (nobody_died(philo) == true)
+		print_philo(philo, "is eating\n");
     usleep(1000);
+    //setting last_eat_time
     pthread_mutex_unlock(&philo->mx_left_fork);
     pthread_mutex_unlock(philo->mx_right_fork);
+    philo->last_eat_time = 0;
     return (0);
 }
 
@@ -33,6 +36,7 @@ int sleeping (t_philo *philo)
     philo->state = SLEEP;
     printf("philo %d is sleeping\n", philo->index);
     usleep(1000 * philo->data->sleep_time);
+    //setting last_sleep_time
     return (0);
 }
 
@@ -45,10 +49,11 @@ int thinking (t_philo *philo)
 
 int dying (t_philo *philo)
 {
-    /*
-        if (philo->last_meal_time > data->eat_time)
-            DEAD
-        state DEAD;
-    */
+    if (philo->last_eat_time > philo->data->eat_time)
+        {
+                philo->state = DIE;
+                printf("philo %d is dead\n", philo->index);
+                return (1);
+        }
+    return (0);
 }
-

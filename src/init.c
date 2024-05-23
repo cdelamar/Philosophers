@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:29:54 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/21 09:54:19 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/23 06:12:41 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ t_philo create_philo(t_data *data, int i)
 	philo.state = IDLE;
 	philo.alive = true;
 	philo.data = data;
-	//philo.left_fork = false;
-	//philo.right_fork = false;
+	philo.last_eat_time = 0;
 	philo.time = ft_time() - data->start_time;
 	philo.index = i + 1;
 	return (philo);
@@ -51,7 +50,8 @@ t_data *init_data (int argc, char **argv)
 	if (argc == 6)
 		data->meal_nb = ft_atoi64_t(argv[5]);
 	data->start_time = ft_time();
-	return data;
+	pthread_mutex_init(&data->mx_output, NULL);
+	return (data);
 }
 
 t_philo *init_philo (t_data *data)
@@ -68,9 +68,18 @@ t_philo *init_philo (t_data *data)
 		pthread_mutex_init(&philo[i].mx_die, NULL);
 		pthread_mutex_init(&philo[i].mx_eat, NULL);
 		pthread_mutex_init(&philo[i].mx_left_fork, NULL);
-		pthread_mutex_init(philo[i].mx_right_fork, NULL);
 		i++;
-		usleep(500); // why not without usleep
+		usleep(1000); // why not without usleep
+	}
+	i = 0;
+
+	while(i < data->philo_nb)
+	{
+		if (i == data->philo_nb - 1)
+			philo[i].mx_right_fork = &philo[0].mx_left_fork;
+		else
+			philo[i].mx_right_fork = &philo[i + 1].mx_left_fork;
+		i++;
 	}
 	return (philo);
 }
