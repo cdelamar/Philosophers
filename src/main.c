@@ -6,31 +6,27 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:29:57 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/23 09:00:01 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/23 17:06:24 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// TODO : get time()
-
-// TODO +++
-// program a proper fork management
-
 #include "philo.h"
 
-bool nobody_died (t_philo *philo)
+void nobody_died (t_philo *philo)
 {
-	//unsigned int i;
+	unsigned int i;
 
-	//i = 0;
-	//while (i < philo->data->philo_nb)
-	//{
-		//printf (">>>> L >>>> philo[%d].data->eat_time = %lu\n", i, philo[i].data->eat_time);
-		//printf (">    R    > philo[%d].last_eat_time = %lu\n", i, philo[i]. last_eat_time);
-	if (philo->last_eat_time > philo->data->eat_time)
-		return (false);
-	//	i++;
-	//}
-	return (true);
+	i = 0;
+	while (1)
+	{
+		pthread_mutex_lock(&philo[i].data->mx_die);
+		if (philo[i].last_eat_time > philo->data->eat_time)
+			return(print_philo(&philo[i], "has died\n")) ;
+		pthread_mutex_unlock(&philo[i].data->mx_die);
+		i++;
+		if (i >= philo->data->philo_nb)
+			i = 0;
+	}
 }
 
 void	error_message(char *str)
@@ -55,6 +51,8 @@ int main (int argc, char **argv)
 		return (EXIT_FAILURE);
 	philo = init_philo(data);
 	thread_launcher(data, philo);
+	nobody_died(philo);
+	//ft_death
 	free(data);
 	free(philo);
 	return (EXIT_SUCCESS);

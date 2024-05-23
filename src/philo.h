@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:30:08 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/23 03:17:47 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/23 17:05:28 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,26 +52,20 @@ typedef struct s_data
 	uint64_t		meal_nb; 	// atoi(argv[5]) :optionnal
 	uint64_t		start_time;
 	pthread_mutex_t	mx_output;	//terminal_output
+	pthread_mutex_t	mx_die;
 } t_data;
 
 typedef struct s_philo
 {
 	int				index;
-
 	bool			alive;
-	// bool			left_fork;
-	// bool			right_fork;
 
 	uint64_t		last_eat_time;
-	uint64_t		last_sleep_time;
-	uint64_t		time; // obsolete ?
-
+	uint64_t		time;
 	pthread_t		thid;
 
 	pthread_mutex_t	mx_left_fork;
 	pthread_mutex_t	*mx_right_fork;
-	pthread_mutex_t	mx_eat;
-	pthread_mutex_t	mx_die;
 
 	t_state			state;
 	t_data			*data;
@@ -85,24 +79,18 @@ bool		valid_inputs(int argc, char **argv);
 bool		min_max_value(int argc, char **argv);
 char		*check_arguments(int argc, char **argv);
 t_data		*init_data (int argc, char **argv);
-
 t_philo		*init_philo (t_data *data);
 t_philo		create_philo(t_data *data, int is);
 void		thread_launcher (t_data *data, t_philo *philo);
 void		*routine (void *arg);
-
 int			ft_atoi(const char *nptr);
 uint64_t	ft_atoi64_t(const char *nptr);
-
-// bool all_philos_alive (t_data *data, t_philo *philo);
-
 int			take_fork(t_philo *philo);
 int			eating (t_philo *philo);
 int			sleeping (t_philo *philo);
 int			thinking (t_philo *philo);
 int			dying (t_philo *philo);
-
 void		print_philo(t_philo *philo, char *str);
-bool 		nobody_died (t_philo *philo);
+void 		nobody_died (t_philo *philo);
 
 #endif

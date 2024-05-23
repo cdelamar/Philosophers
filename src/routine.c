@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 00:27:43 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/23 09:01:08 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:39:45 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ uint64_t ft_time()
     uint64_t output;
 
     gettimeofday(&tv, NULL);
-    output = (tv.tv_sec * 1000) + (tv.tv_usec / 1000); // probleme
+    output = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
     return (output);
 }
 

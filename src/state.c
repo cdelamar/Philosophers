@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 05:55:22 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/23 08:49:39 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:04:06 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 int eating (t_philo *philo)
 {
     philo->state = EAT;
-    if (nobody_died(philo) == true)
-		print_philo(philo, "is eating\n");
-    usleep(1000);
+	print_philo(philo, "is eating\n");
+    philo->last_eat_time = ft_time();
+    usleep(philo->data->eat_time * 1000);
     //setting last_eat_time
     pthread_mutex_unlock(&philo->mx_left_fork);
     pthread_mutex_unlock(philo->mx_right_fork);
@@ -36,7 +36,6 @@ int sleeping (t_philo *philo)
     philo->state = SLEEP;
     printf("philo %d is sleeping\n", philo->index);
     usleep(1000 * philo->data->sleep_time);
-    //setting last_sleep_time
     return (0);
 }
 

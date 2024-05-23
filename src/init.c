@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:29:54 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/23 06:12:41 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/23 17:08:54 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,7 @@ t_philo *init_philo (t_data *data)
 	while(i < data->philo_nb)
 	{
 		philo[i] = create_philo(data, i);
-		pthread_mutex_init(&philo[i].mx_die, NULL);
-		pthread_mutex_init(&philo[i].mx_eat, NULL);
+		pthread_mutex_init(&philo[i].data->mx_die, NULL);
 		pthread_mutex_init(&philo[i].mx_left_fork, NULL);
 		i++;
 		usleep(1000); // why not without usleep
