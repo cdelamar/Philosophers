@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 00:27:43 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/23 16:39:45 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/23 18:45:02 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,22 @@ void *routine (void *arg)
 	philo = (t_philo *)arg;
 	while (1)
 	{
+		if (*philo->data->die)
+			break;
 		if (take_fork(philo) == 1)
-		{
 			eating(philo);
-			usleep(1000);
-		}
 		else if (philo->state == EAT)
+		{
+			if (*philo->data->die)
+				break;
 			sleeping(philo);
+		}
 		else
+		{
+			if (*philo->data->die)
+				break;
 			thinking(philo);
+		}
 	}
 	return (NULL);
 }

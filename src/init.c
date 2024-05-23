@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:29:54 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/23 17:08:54 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/23 18:29:48 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ t_data *init_data (int argc, char **argv)
 		data->meal_nb = ft_atoi64_t(argv[5]);
 	data->start_time = ft_time();
 	pthread_mutex_init(&data->mx_output, NULL);
+	data->die = malloc(sizeof(int));
+	*data->die = 0;
 	return (data);
 }
 
