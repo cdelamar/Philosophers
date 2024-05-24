@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 05:55:22 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/23 16:04:06 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/24 16:52:05 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int thinking (t_philo *philo)
 	printf("philo %d is thinking\n", philo->index);
 	return (0);
 }
-
+/*
 int dying (t_philo *philo)
 {
     if (philo->last_eat_time > philo->data->eat_time)
@@ -55,4 +55,4 @@ int dying (t_philo *philo)
                 return (1);
         }
     return (0);
-}
+}*/

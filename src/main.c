@@ -6,12 +6,12 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:29:57 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/23 18:30:06 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/24 17:08:02 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
+/*
 void nobody_died (t_philo *philo)
 {
 	unsigned int i;
@@ -23,9 +23,33 @@ void nobody_died (t_philo *philo)
 		pthread_mutex_lock(&philo[i].data->mx_die);
 		if (philo[i].last_eat_time > philo->data->eat_time)
 		{
+			philo[i].state = DIE;
 			pthread_mutex_unlock(&philo[i].data->mx_die);
 			*philo[i].data->die = 1;
 			return(print_philo(&philo[i], "has died\n")) ;
+		}
+		pthread_mutex_unlock(&philo[i].data->mx_die);
+		i++;
+		if (i >= philo->data->philo_nb)
+			i = 0;
+	}
+}*/
+
+int nobody_died (t_philo *philo)
+{
+	unsigned int i;
+
+	i = 0;
+	while (1)
+	{
+		//printf("%lu > %lu\n", philo[i].last_eat_time, philo->data->eat_time);
+		pthread_mutex_lock(&philo[i].data->mx_die);
+		if (philo[i].last_eat_time > philo->data->eat_time)
+		{
+			philo[i].state = DIE;
+			pthread_mutex_unlock(&philo[i].data->mx_die);
+			*philo[i].data->die = 1;
+			return(1) ;
 		}
 		pthread_mutex_unlock(&philo[i].data->mx_die);
 		i++;
@@ -57,16 +81,20 @@ int main (int argc, char **argv)
 	philo = init_philo(data);
 	thread_launcher(data, philo);
 	nobody_died(philo);
-	unsigned int i = 0;
-	while (i < data->philo_nb)
+	if (nobody_died(philo) == 1)
 	{
-		pthread_join(philo[i].thid, NULL);
-		i++;
+		print_philo(philo, "has died \n");
+		unsigned int i = 0;
+		while (i < data->philo_nb)
+		{
+			pthread_join(philo[i].thid, NULL);
+			i++;
+		}
+		//ft_death
+		free(data);
+		free(philo);
+		return (EXIT_SUCCESS);
 	}
-	//ft_death
-	free(data);
-	free(philo);
-	return (EXIT_SUCCESS);
 }
 
 

@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:30:08 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/23 18:26:08 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/24 17:06:44 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,6 @@ int			sleeping (t_philo *philo);
 int			thinking (t_philo *philo);
 int			dying (t_philo *philo);
 void		print_philo(t_philo *philo, char *str);
-void 		nobody_died (t_philo *philo);
+int 		nobody_died (t_philo *philo);
 
 #endif
