@@ -83,13 +83,16 @@ int main (int argc, char **argv)
 	nobody_died(philo);
 	if (nobody_died(philo) == 1)
 	{
+		//pthread_mutex_lock(&data->mx_output);
 		print_philo(philo, "has died \n");
+		//pthread_mutex_unlock(&data->mx_output);
 		unsigned int i = 0;
 		while (i < data->philo_nb)
 		{
 			pthread_join(philo[i].thid, NULL);
 			i++;
 		}
+
 		//ft_death
 		free(data);
 		free(philo);
