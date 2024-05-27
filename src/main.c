@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:29:57 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/27 14:05:02 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:42:18 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,9 @@ int nobody_died (t_philo *philo)
 	while (1)
 	{
 		pthread_mutex_lock(&philo[i].data->mx_die);
-		if (philo[i].last_eat_time > philo->data->eat_time)
+		if (philo[i].last_eat_time > philo->data->death_time)
 		{
+			printf ("philo[%d].last_eat_time = %ld > philo->data->eat_time %ld)\n", i, philo[i].last_eat_time, philo->data->death_time);
 			philo[i].state = DIE;
 			pthread_mutex_unlock(&philo[i].data->mx_die);
 			*philo[i].data->die = 1; // TODO : FIX //
@@ -81,23 +82,23 @@ int main (int argc, char **argv)
 
 
 	// ------------------ TEST
-	unsigned int t = 0;
+	/*unsigned int t = 0;
 	while (t < data->philo_nb)
 	{
 		printf("philo[%d].last_eat_time = %lu\n", t, philo[t].last_eat_time);
 		t++;
-	}
+	}*/
 	// ------------------ TEST
 
 	thread_launcher(data, philo);
 
 	// ------------------ TEST
-	t = 0;
+	/*t = 0;
 	while (t < data->philo_nb)
 	{
 		printf(">>> philo[%d].last_eat_time = %lu\n", t, philo[t].last_eat_time);
 		t++;
-	}
+	}*/
 	// ------------------ TEST
 
 	nobody_died(philo);

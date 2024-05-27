@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:30:08 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/27 14:05:36 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:50:22 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_data
 	uint64_t		death_time;	// atoi(argv[2])
 	uint64_t		eat_time;	// atoi(argv[3])
 	uint64_t		sleep_time;	// atoi(argv[4])
-	uint64_t		meal_nb; 	// atoi(argv[5]) :optionnal
+	uint64_t		meal_nb;	// atoi(argv[5]) :optionnal
 	uint64_t		start_time;
 	pthread_mutex_t	mx_output;	//terminal_output
 	pthread_mutex_t	mx_die;

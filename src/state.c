@@ -6,23 +6,17 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 05:55:22 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/27 13:48:41 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:48:43 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-// eating
-// sleeping
-// dying
-
-//if (take_fork(philo[i]))
-
 int eating (t_philo *philo)
 {
     philo->state = EAT;
 	print_philo(philo, "is eating\n");
-    philo->last_eat_time = ft_time();
+    philo->last_eat_time = ft_time() - philo->data->start_time;
     usleep(philo->data->eat_time * 1000);
     pthread_mutex_unlock(&philo->mx_left_fork);
     pthread_mutex_unlock(philo->mx_right_fork);
