@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:29:57 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/27 13:53:57 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/27 14:05:02 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,28 @@ int main (int argc, char **argv)
 	if (data == NULL)
 		return (EXIT_FAILURE);
 	philo = init_philo(data);
+
+
+	// ------------------ TEST
+	unsigned int t = 0;
+	while (t < data->philo_nb)
+	{
+		printf("philo[%d].last_eat_time = %lu\n", t, philo[t].last_eat_time);
+		t++;
+	}
+	// ------------------ TEST
+
 	thread_launcher(data, philo);
+
+	// ------------------ TEST
+	t = 0;
+	while (t < data->philo_nb)
+	{
+		printf(">>> philo[%d].last_eat_time = %lu\n", t, philo[t].last_eat_time);
+		t++;
+	}
+	// ------------------ TEST
+
 	nobody_died(philo);
 	if (nobody_died(philo) == 1)
 	{

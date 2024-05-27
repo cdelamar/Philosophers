@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:30:08 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/27 13:53:45 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/27 14:05:36 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct s_data
 typedef struct s_philo
 {
 	int				index;
-	bool			alive;
+	//bool			alive;
 
 	uint64_t		last_eat_time;
 	uint64_t		time;
