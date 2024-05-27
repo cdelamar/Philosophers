@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:29:54 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/23 18:29:48 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/27 14:00:43 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ t_philo create_philo(t_data *data, int i)
 	t_philo philo;
 
 	philo.state = IDLE;
-	philo.alive = true;
+	//philo.alive = true;
 	philo.data = data;
-	philo.last_eat_time = 0;
-	philo.time = ft_time() - data->start_time;
+	philo.last_eat_time = ft_time() - data->start_time;
+	//philo.time = ft_time() - data->start_time;
 	philo.index = i + 1;
 	return (philo);
 }
@@ -70,11 +70,10 @@ t_philo *init_philo (t_data *data)
 		pthread_mutex_init(&philo[i].data->mx_die, NULL);
 		pthread_mutex_init(&philo[i].mx_left_fork, NULL);
 		i++;
-		usleep(1000); // why not without usleep
 	}
 	i = 0;
 
-	while(i < data->philo_nb)
+	while(i < data->philo_nb) // FIX ?
 	{
 		if (i == data->philo_nb - 1)
 			philo[i].mx_right_fork = &philo[0].mx_left_fork;

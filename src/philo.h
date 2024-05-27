@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:30:08 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/24 17:06:44 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/27 13:53:45 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_data
 	uint64_t		start_time;
 	pthread_mutex_t	mx_output;	//terminal_output
 	pthread_mutex_t	mx_die;
-	int				*die;
+	int				*die;		// who did this ?
 } t_data;
 
 typedef struct s_philo

@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 05:55:22 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/24 16:52:05 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/27 13:48:41 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,9 @@ int eating (t_philo *philo)
 	print_philo(philo, "is eating\n");
     philo->last_eat_time = ft_time();
     usleep(philo->data->eat_time * 1000);
-    //setting last_eat_time
     pthread_mutex_unlock(&philo->mx_left_fork);
     pthread_mutex_unlock(philo->mx_right_fork);
-    philo->last_eat_time = 0;
+    philo->last_eat_time = ft_time() - philo->data->start_time; // or 0
     return (0);
 }
 
@@ -45,6 +44,7 @@ int thinking (t_philo *philo)
 	printf("philo %d is thinking\n", philo->index);
 	return (0);
 }
+
 /*
 int dying (t_philo *philo)
 {

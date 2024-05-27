@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 23:45:17 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/23 18:20:07 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/27 12:50:48 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void thread_launcher (t_data *data, t_philo *philo)
 	while (i < data->philo_nb)
 	{
 		pthread_create(&philo[i].thid, NULL, routine, &philo[i]);
-		usleep(100);
+		//usleep(100);
 		i++;
 	}
 	i = 0;
