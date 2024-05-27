@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:29:57 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/27 15:42:18 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/27 19:15:29 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,11 @@ int nobody_died (t_philo *philo)
 		pthread_mutex_lock(&philo[i].data->mx_die);
 		if (philo[i].last_eat_time > philo->data->death_time)
 		{
-			printf ("philo[%d].last_eat_time = %ld > philo->data->eat_time %ld)\n", i, philo[i].last_eat_time, philo->data->death_time);
+			// printf ("philo[%d].last_eat_time = %ld > philo->data->eat_time %ld)\n", i, philo[i].last_eat_time, philo->data->death_time);
 			philo[i].state = DIE;
+			*philo[i].data->die = 1; // TODO : FIX // chiant
 			pthread_mutex_unlock(&philo[i].data->mx_die);
-			*philo[i].data->die = 1; // TODO : FIX //
+			print_philo(&philo[i], "has died\n");
 			return(1) ;
 		}
 		pthread_mutex_unlock(&philo[i].data->mx_die);
@@ -82,29 +83,28 @@ int main (int argc, char **argv)
 
 
 	// ------------------ TEST
-	/*unsigned int t = 0;
-	while (t < data->philo_nb)
-	{
-		printf("philo[%d].last_eat_time = %lu\n", t, philo[t].last_eat_time);
-		t++;
-	}*/
+	// unsigned int t = 0;
+	// while (t < data->philo_nb)
+	// {
+	// 	printf("philo[%d].last_eat_time = %lu\n", t, philo[t].last_eat_time);
+	// 	t++;
+	// }
 	// ------------------ TEST
 
 	thread_launcher(data, philo);
 
 	// ------------------ TEST
-	/*t = 0;
-	while (t < data->philo_nb)
-	{
-		printf(">>> philo[%d].last_eat_time = %lu\n", t, philo[t].last_eat_time);
-		t++;
-	}*/
+	// t = 0;
+	// while (t < data->philo_nb)
+	// {
+	// 	printf(">>> philo[%d].last_eat_time = %lu\n", t, philo[t].last_eat_time);
+	// 	t++;
+	// }
 	// ------------------ TEST
 
-	nobody_died(philo);
+	// nobody_died(philo);
 	if (nobody_died(philo) == 1)
 	{
-		print_philo(philo, "has died \n");
 		unsigned int i = 0;
 		while (i < data->philo_nb)
 		{

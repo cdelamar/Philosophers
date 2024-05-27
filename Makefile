@@ -6,7 +6,7 @@
 #    By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 21:54:20 by cdelamar          #+#    #+#              #
-#    Updated: 2024/05/21 15:38:08 by cdelamar         ###   ########.fr        #
+#    Updated: 2024/05/27 19:11:06 by cdelamar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,10 +14,10 @@ NAME = philo
 
 CC = cc
 
-CFLAGS =	-g -Wall -Wextra -Werror -pthread \
+CFLAGS =	-g -Wall -Wextra -Werror -pthread\
 			-Iinclude
 
-LFLAGS =	-Llib -pthread\
+LFLAGS =	-pthread -fsanitize=thread \
 
 SRC_DIR = src/
 OBJ_DIR = obj/

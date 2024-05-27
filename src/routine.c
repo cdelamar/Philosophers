@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 00:27:43 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/24 16:08:19 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/27 19:15:57 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ void	print_philo(t_philo *philo, char *str)
 	pthread_mutex_unlock(&philo->data->mx_output);
 }
 
-void *routine (void *arg)
+void *routine (void *arg) // TODO : stop routine to join all thread
 {
 	t_philo *philo;
 
 	philo = (t_philo *)arg;
 	while (1)
 	{
-		if (*philo->data->die)
+		if (*philo->data->die) // mutex // (mx_die ?)
 			break;
 		if (take_fork(philo) == 1)
 			eating(philo);
