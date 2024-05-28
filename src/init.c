@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:29:54 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/27 14:00:43 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:57:08 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ t_philo create_philo(t_data *data, int i)
 	t_philo philo;
 
 	philo.state = IDLE;
-	//philo.alive = true;
 	philo.data = data;
 	philo.last_eat_time = ft_time() - data->start_time;
 	//philo.time = ft_time() - data->start_time;
@@ -51,8 +50,7 @@ t_data *init_data (int argc, char **argv)
 		data->meal_nb = ft_atoi64_t(argv[5]);
 	data->start_time = ft_time();
 	pthread_mutex_init(&data->mx_output, NULL);
-	data->die = malloc(sizeof(int));
-	*data->die = 0;
+	data->death = false;
 	return (data);
 }
 

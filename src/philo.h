@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:30:08 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/27 15:50:22 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/28 17:06:17 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_data
 	uint64_t		start_time;
 	pthread_mutex_t	mx_output;	//terminal_output
 	pthread_mutex_t	mx_die;
-	int				*die;		// who did this ?
+	bool			death;		// who did this ?
 } t_data;
 
 typedef struct s_philo
@@ -92,6 +92,7 @@ int			sleeping (t_philo *philo);
 int			thinking (t_philo *philo);
 int			dying (t_philo *philo);
 void		print_philo(t_philo *philo, char *str);
+void		death_print(t_philo *philo, char *str);
 int 		nobody_died (t_philo *philo);
 
 #endif
