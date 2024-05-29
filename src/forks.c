@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 06:00:01 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/27 15:47:16 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/29 01:36:47 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int take_fork (t_philo *philo)
 		pthread_mutex_lock(&philo->mx_left_fork);
 		print_philo(philo, "has taken his LEFT fork\n");
    }
-
    return(1);
 }
 /*

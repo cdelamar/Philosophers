@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 00:27:43 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/28 17:05:34 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/29 00:55:56 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void *routine (void *arg) // TODO : stop routine to join all thread
 			break;
 		if (take_fork(philo) == 1)
 			eating(philo);
-		else if (philo->state == EAT)
+		if (philo->state == EAT)
 		{
 			if (philo->data->death == true)
 				break;
