@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:29:54 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/29 04:48:11 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/29 23:48:00 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,13 @@ void init_data (int argc, char **argv, t_data *data)
 	data->eat_time = ft_atoi64_t(argv[3]);
 	data->sleep_time = ft_atoi64_t(argv[4]);
 	if (argc == 6)
-		data->meal_nb = ft_atoi64_t(argv[5]);
+	{
+		data->meal_nb = ft_atol(argv[5]);
+		data->meal_arg = true;
+		pthread_mutex_init(&data->mx_meal, NULL); // attention
+	}
+	else
+		data->meal_arg = false;
 	data->start_time = ft_time();
 	pthread_mutex_init(&data->mx_output, NULL);
 	data->death = false;

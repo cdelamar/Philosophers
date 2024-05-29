@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:30:08 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/29 16:13:39 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/29 23:55:32 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,18 @@ typedef enum e_state
 typedef struct s_data
 {
 	pthread_t 		death_monitor;
+	pthread_t 		meal_monitor;
 	unsigned int	philo_nb;	// atoi(argv[1])
 
 	uint64_t		death_time;	// atoi(argv[2])
 	uint64_t		eat_time;	// atoi(argv[3])
 	uint64_t		sleep_time;	// atoi(argv[4])
-	uint64_t		meal_nb;	// atoi(argv[5]) :optionnal
+	long			meal_nb;	// atoi(argv[5]) :optionnal
 	uint64_t		start_time;
 
 	pthread_mutex_t	mx_output;	//terminal_output
 	pthread_mutex_t	mx_die;
-
+	pthread_mutex_t mx_meal;
 	bool			death;		// who did this ?  // FIXED : i did
 	bool			meal_arg;	// TODO : meal increment
 } t_data;
@@ -64,7 +65,7 @@ typedef struct s_data
 typedef struct s_philo
 {
 	int				index;
-	int				meal;
+	long			meal; // if argc 5 > -1  // if argc 6 > 0
 
 	uint64_t		last_eat_time;
 	uint64_t		time;
@@ -94,10 +95,19 @@ uint64_t	ft_atoi64_t(const char *nptr);
 int			take_fork(t_philo *philo);
 int			eating (t_philo *philo);
 int			sleeping (t_philo *philo);
+long		ft_atol(const char *str);
+
+
+// void		*meals_complete(void *arg);
 int			thinking (t_philo *philo);
 int			dying (t_philo *philo);
 void		print_philo(t_philo *philo, char *str);
 void		death_print(t_philo *philo, char *str);
-// int 		nobody_died (t_philo *philo);
+int 		nobody_died (t_philo *philo);
+// void		*meals_complete(void *arg);
+
+void increment_meal (t_philo *philo);
+int meals_complete (t_philo *philo);
+void *monitoring (void *arg);
 
 #endif

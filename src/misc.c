@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:30:01 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/21 17:24:32 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/29 23:53:37 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,29 @@ int	ft_atoi(const char *nptr)
 		nptr++;
 	}
 	return (num * sign);
+}
+
+long	ft_atol(const char *str)
+{
+	long int	nb;
+	int			sign;
+
+	nb = 0;
+	sign = 1;
+	while ((*str >= 9 && *str <= 13) || *str == ' ')
+		str++;
+	if (*str == '+' || *str == '-')
+	{
+		if (*str == '-')
+			sign = (-1);
+		str++;
+	}
+	while (*str >= '0' && *str <= '9')
+	{
+		nb = nb * 10 + *str - '0';
+		str++;
+	}
+	return (sign * nb);
 }
 
 

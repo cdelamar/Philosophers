@@ -6,7 +6,7 @@
 #    By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/10 21:54:20 by cdelamar          #+#    #+#              #
-#    Updated: 2024/05/27 19:11:06 by cdelamar         ###   ########.fr        #
+#    Updated: 2024/05/29 18:57:28 by cdelamar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ FILES =	main \
 		misc \
 		state \
 		routine \
+		meal \
 		thread
 
 SRCS = $(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))

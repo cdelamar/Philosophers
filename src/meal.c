@@ -6,9 +6,19 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 04:27:52 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/29 04:28:07 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/29 22:51:47 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "philo.h"
+
+void increment_meal (t_philo *philo)
+{
+	pthread_mutex_lock(&philo->data->mx_meal);
+	philo->meal++;
+	pthread_mutex_unlock(&philo->data->mx_meal);
+}
+
 
 /*
 void *meal_parser(void *arg)
@@ -40,3 +50,59 @@ void *meal_parser(void *arg)
 	}
 	return(NULL);
 */
+
+/*
+void *meals_complete(void *arg)
+{
+	t_philo *philo;
+	philo = (t_philo *)arg;
+
+	unsigned int	i;
+	unsigned int	output;
+
+	i = 0;
+	output = 0;
+	while (1)
+	{
+		while(i < philo->data->philo_nb)
+		{
+			if(philo[i].meal == philo->data->meal_nb)
+				output++;
+			i++;
+		}
+		if (output == philo->data->meal_nb)
+			return;
+		i = 0;
+		output = 0;
+	}
+	return;
+}*/
+/*
+bool check_meal (t_philo *philo)
+{
+	if(philo->data->meal_arg == false)
+		return (false);
+
+	unsigned int	i;
+	unsigned int	output;
+
+	i = 0;
+	output = 0;
+
+	while(i < philo->data->philo_nb)
+	{
+		if(philo[i].meal == philo->data->meal_nb)
+			output++;
+		i++;
+	}
+	if (output == philo->data->meal_nb)
+		return (true);
+	return (false);
+}*/
+
+/*
+int	add_meal (t_philo *philo)
+{
+	//mutex ?
+	philo->meal += 1;
+}*/

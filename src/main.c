@@ -6,37 +6,80 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:29:57 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/29 04:47:55 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/30 00:06:50 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void *nobody_died (void *arg)
+int nobody_died (t_philo *philo)
 {
-	unsigned int i;
-	t_philo *philo;
+	unsigned int	i;
 
 	i = 0;
-	philo = (t_philo *)arg;
 	while (1)
 	{
 		pthread_mutex_lock(&philo[i].data->mx_die);
 		if (ft_time() - philo[i].last_eat_time >= philo->data->death_time) // THIS IS WHERE SHITS HAPPENS
 		{
-			printf("\n\n\n\n ----- LE DECES ----- \n\n\n\n");
 			philo[i].state = DIE;
-			philo[i].data->death = true;			// FIXED : boolean
+			philo[i].data->death = true;					// FIXED : boolean
 			pthread_mutex_unlock(&philo[i].data->mx_die);
-			death_print(&philo[i], "has died\n");	// deathprint OK
-			return NULL ;
+			death_print(&philo[i], "has died\n");			// deathprint OK
+			return (1) ;
 		}
 		pthread_mutex_unlock(&philo[i].data->mx_die);
 		i++;
 		if (i >= philo->data->philo_nb)
 			i = 0;
 	}
-	return NULL;
+	return (0);
+}
+
+int meals_complete (t_philo *philo)
+{
+	unsigned int	i;
+	unsigned int	counter;
+
+	i = 0;
+	counter = 0;
+
+	while (1)
+	{
+		pthread_mutex_lock(&philo[i].data->mx_meal);
+		if (philo[i].meal == philo->data->meal_nb)
+		{
+			counter++;
+			if (counter == philo->data->meal_nb)
+			{
+				pthread_mutex_unlock(&philo[i].data->mx_meal);
+				return (1) ;
+			}
+		}
+		pthread_mutex_unlock(&philo[i].data->mx_meal);
+		i++;
+		if (i >= philo->data->philo_nb)
+			i = 0;
+	}
+	return (0);
+}
+
+void *monitoring (void *arg)
+{
+	// unsigned int i;
+	t_philo *philo;
+
+	// i = 0;
+	philo = (t_philo *)arg;
+	if (nobody_died(philo) == 1)
+		return (NULL);
+	if (philo->meal != -1)
+	{
+		printf("\n\n\n MEAL \n\n\n");
+		if (meals_complete(philo) == 1)
+		return (NULL);
+	}
+	return (NULL);
 }
 
 void	error_message(char *str)
@@ -48,9 +91,7 @@ int main (int argc, char **argv)
 {
 	t_data	data;
 	t_philo	*philo;
-	// pthread_t death_monitor;
 
-	// data = NULL;
 	philo = NULL;
 	if (check_arguments(argc, argv) != NULL)
 	{
@@ -58,13 +99,10 @@ int main (int argc, char **argv)
 		return (EXIT_FAILURE);
 	}
 	init_data(argc, argv, &data);
-	// if (&data == NULL)
-		// return (EXIT_FAILURE);
 	philo = init_philo(&data, argc);
-	pthread_create(&data.death_monitor, NULL, nobody_died, (void *)philo);
+	pthread_create(&data.death_monitor, NULL, monitoring, (void *)philo);
 	thread_launcher(&data, philo);
 	pthread_join(data.death_monitor, NULL);
-	// free(&data);
 	free(philo);
 	return (EXIT_SUCCESS);
 }
