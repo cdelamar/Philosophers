@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:30:08 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/29 02:57:42 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/29 04:22:21 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef enum e_state
 
 typedef struct s_data
 {
+	// pthread_t 		death_monitor;
 	unsigned int	philo_nb;	// atoi(argv[1])
 	uint64_t		death_time;	// atoi(argv[2])
 	uint64_t		eat_time;	// atoi(argv[3])
