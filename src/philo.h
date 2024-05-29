@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:30:08 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/29 04:22:21 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/29 16:13:39 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,20 @@ typedef enum e_state
 
 typedef struct s_data
 {
-	// pthread_t 		death_monitor;
+	pthread_t 		death_monitor;
 	unsigned int	philo_nb;	// atoi(argv[1])
+
 	uint64_t		death_time;	// atoi(argv[2])
 	uint64_t		eat_time;	// atoi(argv[3])
 	uint64_t		sleep_time;	// atoi(argv[4])
 	uint64_t		meal_nb;	// atoi(argv[5]) :optionnal
 	uint64_t		start_time;
+
 	pthread_mutex_t	mx_output;	//terminal_output
 	pthread_mutex_t	mx_die;
+
 	bool			death;		// who did this ?  // FIXED : i did
+	bool			meal_arg;	// TODO : meal increment
 } t_data;
 
 typedef struct s_philo
@@ -80,7 +84,7 @@ void		ft_putendl_fd(char *s, int fd);
 bool		valid_inputs(int argc, char **argv);
 bool		min_max_value(int argc, char **argv);
 char		*check_arguments(int argc, char **argv);
-t_data		*init_data (int argc, char **argv);
+void		init_data (int argc, char **argv, t_data *data);
 t_philo		*init_philo (t_data *data, int argc);
 t_philo		create_philo(t_data *data, int i, int argc);
 void		thread_launcher (t_data *data, t_philo *philo);

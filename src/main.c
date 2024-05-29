@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:29:57 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/29 04:22:11 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/29 04:47:55 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,25 +46,25 @@ void	error_message(char *str)
 
 int main (int argc, char **argv)
 {
-	t_data	*data;
+	t_data	data;
 	t_philo	*philo;
-	pthread_t death_monitor;
+	// pthread_t death_monitor;
 
-	data = NULL;
+	// data = NULL;
 	philo = NULL;
 	if (check_arguments(argc, argv) != NULL)
 	{
 		error_message(check_arguments(argc, argv));
 		return (EXIT_FAILURE);
 	}
-	data = init_data(argc, argv);
-	if (data == NULL)
-		return (EXIT_FAILURE);
-	philo = init_philo(data, argc);
-	pthread_create(&death_monitor, NULL, nobody_died, (void *)philo);
-	thread_launcher(data, philo);
-	pthread_join(death_monitor, NULL);
-	free(data);
+	init_data(argc, argv, &data);
+	// if (&data == NULL)
+		// return (EXIT_FAILURE);
+	philo = init_philo(&data, argc);
+	pthread_create(&data.death_monitor, NULL, nobody_died, (void *)philo);
+	thread_launcher(&data, philo);
+	pthread_join(data.death_monitor, NULL);
+	// free(&data);
 	free(philo);
 	return (EXIT_SUCCESS);
 }

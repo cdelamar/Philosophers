@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:29:54 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/29 02:59:23 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/29 04:48:11 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ t_philo create_philo(t_data *data, int i, int argc)
 	return (philo);
 }
 
-t_data *init_data (int argc, char **argv)
+void init_data (int argc, char **argv, t_data *data)
 {
-	t_data *data;
+	// t_data *data;
 
-	data = malloc(sizeof(t_data));
+	// data = malloc(sizeof(t_data));
 	data->philo_nb = ft_atoi(argv[1]);
 	data->death_time = ft_atoi64_t(argv[2]);
 	data->eat_time = ft_atoi64_t(argv[3]);
@@ -54,7 +54,7 @@ t_data *init_data (int argc, char **argv)
 	data->start_time = ft_time();
 	pthread_mutex_init(&data->mx_output, NULL);
 	data->death = false;
-	return (data);
+	return ;
 }
 
 t_philo *init_philo (t_data *data, int argc)
