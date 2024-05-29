@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:29:54 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/29 23:48:00 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/30 00:46:40 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char *check_arguments(int argc, char **argv)
 	return (NULL);
 }
 
-t_philo create_philo(t_data *data, int i, int argc)
+t_philo create_philo(t_data *data, int i)
 {
 	t_philo philo;
 
@@ -33,10 +33,8 @@ t_philo create_philo(t_data *data, int i, int argc)
 	philo.data = data;
 	philo.last_eat_time = ft_time(); // TODO FIX //
 	philo.index = i + 1;
-	if (argc == 6)
-		philo.meal = 0;
-	else
-		philo.meal = -1;
+	philo.meal = 0;
+	philo.meal_nb = data->meal_nb;
 	return (philo);
 }
 
@@ -49,21 +47,18 @@ void init_data (int argc, char **argv, t_data *data)
 	data->death_time = ft_atoi64_t(argv[2]);
 	data->eat_time = ft_atoi64_t(argv[3]);
 	data->sleep_time = ft_atoi64_t(argv[4]);
+	data->meal_nb = -1;
+	data->philo_finished = 0;
 	if (argc == 6)
-	{
 		data->meal_nb = ft_atol(argv[5]);
-		data->meal_arg = true;
-		pthread_mutex_init(&data->mx_meal, NULL); // attention
-	}
-	else
-		data->meal_arg = false;
+	pthread_mutex_init(&data->mx_finished, NULL); // attention
 	data->start_time = ft_time();
 	pthread_mutex_init(&data->mx_output, NULL);
 	data->death = false;
 	return ;
 }
 
-t_philo *init_philo (t_data *data, int argc)
+t_philo *init_philo (t_data *data)
 {
 	unsigned int	i;
 	t_philo 		*philo;
@@ -73,7 +68,7 @@ t_philo *init_philo (t_data *data, int argc)
 
 	while(i < data->philo_nb)
 	{
-		philo[i] = create_philo(data, i, argc);
+		philo[i] = create_philo(data, i);
 		pthread_mutex_init(&philo[i].data->mx_die, NULL);
 		pthread_mutex_init(&philo[i].mx_left_fork, NULL);
 		i++;

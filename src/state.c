@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 05:55:22 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/29 22:46:51 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/30 00:58:41 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ int eating (t_philo *philo)
 {
 	philo->last_eat_time = ft_time();
 	philo->state = EAT;
-	if (philo->meal != -1)
-		increment_meal(philo);
 	print_philo(philo, "is eating\n");
 	usleep(philo->data->eat_time * 1000);
 	pthread_mutex_unlock(&philo->mx_left_fork);

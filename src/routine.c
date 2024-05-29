@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 00:27:43 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/29 00:55:56 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/30 01:00:21 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,17 @@ void *routine (void *arg) // TODO : stop routine to join all thread
 		if (philo->data->death == true) // mutex // (mx_die ?)
 			break;
 		if (take_fork(philo) == 1)
+		{
 			eating(philo);
+			philo->meal++; // par meal
+			if (philo->meal == philo->meal_nb && philo->meal_nb != -1)
+			{
+				pthread_mutex_lock(&philo->data->mx_finished);
+				philo->data->philo_finished++; // par philo
+				pthread_mutex_unlock(&philo->data->mx_finished);
+				return (NULL);
+			}
+		}
 		if (philo->state == EAT)
 		{
 			if (philo->data->death == true)

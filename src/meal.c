@@ -6,18 +6,11 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 04:27:52 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/29 22:51:47 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/30 00:59:09 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void increment_meal (t_philo *philo)
-{
-	pthread_mutex_lock(&philo->data->mx_meal);
-	philo->meal++;
-	pthread_mutex_unlock(&philo->data->mx_meal);
-}
 
 
 /*
