@@ -6,13 +6,23 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 23:45:17 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/29 03:04:46 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/30 19:25:34 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void thread_launcher (t_data *data, t_philo *philo)
+uint64_t	ft_time(void)
+{
+    struct	timeval  tv;
+    uint64_t	output;
+
+    gettimeofday (&tv, NULL);
+    output = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
+    return (output);
+}
+
+void	thread_launcher(t_data *data, t_philo *philo)
 {
 	unsigned int	i;
 
@@ -29,5 +39,5 @@ void thread_launcher (t_data *data, t_philo *philo)
 		pthread_join(philo[i].thid, NULL);
 		i++;
 	}
-	return;
+	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:30:01 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/29 23:53:37 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/30 19:13:28 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,21 @@ void	ft_putendl_fd(char *s, int fd)
 	write(fd, "\n", 1);
 }
 
-int is_number(char c)
+int	is_number(char c)
 {
 	return (c >= '0' && c <= '9');
 }
 
-bool valid_inputs(int argc, char **argv)
+bool	valid_inputs(int argc, char **argv)
 {
 	int	i;
 	int	j;
 
 	i = 1;
-	while(i < argc)
+	while (i < argc)
 	{
 		j = 0;
-		while(argv[i][j])
+		while (argv[i][j])
 		{
 			if (is_number(argv[i][j]) == 0)
 				return (false);
@@ -49,10 +49,10 @@ bool valid_inputs(int argc, char **argv)
 	}
 	return (true);
 }
-// TODO : FIX (bigger numbers than 2147483647 are passing sometimes)
-bool min_max_value(int argc, char **argv)
+
+bool	min_max_value(int argc, char **argv)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < argc)
@@ -63,7 +63,7 @@ bool min_max_value(int argc, char **argv)
 	}
 	return (true);
 }
-// WARNING : OVERFLOW NOT HANDLED
+
 uint64_t	ft_atoi64_t(const char *nptr)
 {
 	uint64_t	num;
@@ -71,7 +71,6 @@ uint64_t	ft_atoi64_t(const char *nptr)
 
 	num = 0;
 	i = 0;
-
 	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == ' ')
 		i++;
 	if (nptr[i] == '+')
@@ -83,7 +82,6 @@ uint64_t	ft_atoi64_t(const char *nptr)
 	}
 	return (num);
 }
-
 
 int	ft_atoi(const char *nptr)
 {
@@ -130,6 +128,3 @@ long	ft_atol(const char *str)
 	}
 	return (sign * nb);
 }
-
-
-

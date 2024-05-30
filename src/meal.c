@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 04:27:52 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/30 00:59:09 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/30 01:33:59 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,7 @@ void *meal_parser(void *arg)
 		i = 0;
 	}
 	return(NULL);
-*/
 
-/*
 void *meals_complete(void *arg)
 {
 	t_philo *philo;
@@ -69,10 +67,12 @@ void *meals_complete(void *arg)
 		output = 0;
 	}
 	return;
-}*/
-/*
+}
+
 bool check_meal (t_philo *philo)
-{
+{*/
+
+/*
 	if(philo->data->meal_arg == false)
 		return (false);
 
@@ -91,9 +91,9 @@ bool check_meal (t_philo *philo)
 	if (output == philo->data->meal_nb)
 		return (true);
 	return (false);
-}*/
+}
 
-/*
+
 int	add_meal (t_philo *philo)
 {
 	//mutex ?

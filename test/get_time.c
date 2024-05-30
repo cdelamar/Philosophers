@@ -8,10 +8,10 @@
 // gettimeofday as well
 
 
-// struct timeval {
-//     time_t      tv_sec;     // seconds
-//     suseconds_t tv_usec;    // microseconds
-// };
+struct timeval {
+    time_t      tv_sec;     // seconds
+    suseconds_t tv_usec;    // microseconds
+};
 
 // valgrind tool for race condition
 // valgrind --tool=helgrind
@@ -32,3 +32,9 @@ int main()
 	uint64_t y = m / 12;
 	printf("years : %ld\n", y);
 }
+
+
+// data->start = ft_time()   14h02
+
+// data->derniers_repas = ft_time() - data_start
+		// 14h04				14h04	-		14h02
