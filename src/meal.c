@@ -6,12 +6,11 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 04:27:52 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/30 01:33:59 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/30 23:32:46 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
-
+#include "../includes/philo.h"
 
 /*
 void *meal_parser(void *arg)

@@ -6,11 +6,11 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 06:00:01 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/30 18:40:19 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/31 01:15:00 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../includes/philo.h"
 
 int	take_fork(t_philo *philo)
 {
@@ -29,4 +29,18 @@ int	take_fork(t_philo *philo)
 		print_philo(philo, "has taken his LEFT fork\n");
 	}
 	return (1);
+}
+void ft_free (t_philo *philo, t_data *data)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (i  < philo->data->philo_nb)
+	{
+		pthread_mutex_destroy(&philo[i].mx_left_fork);
+		i++;
+	}
+	pthread_mutex_destroy(&data->mx_die);
+	pthread_mutex_destroy(&data->mx_output);
+	pthread_mutex_destroy(&data->mx_finished);
 }

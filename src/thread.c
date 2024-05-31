@@ -6,11 +6,11 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 23:45:17 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/30 19:25:34 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/31 01:18:15 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../includes/philo.h"
 
 uint64_t	ft_time(void)
 {
@@ -40,4 +40,39 @@ void	thread_launcher(t_data *data, t_philo *philo)
 		i++;
 	}
 	return ;
+}
+
+void	print_philo(t_philo *philo, char *str)
+{
+	uint64_t	time;
+
+	if (philo->data->death == false)
+	{
+		time = ft_time() - philo->data->start_time;
+		pthread_mutex_lock(&philo->data->mx_output);
+		printf("%lu : philo %d %s", time, philo->index, str);
+		pthread_mutex_unlock(&philo->data->mx_output);
+	}
+	else
+		return ;
+}
+
+void	death_print(t_philo *philo, char *str)
+{
+	uint64_t	time;
+
+	time = ft_time() - philo->data->start_time;
+	pthread_mutex_lock(&philo->data->mx_output);
+	printf("%lu : philo %d %s", time, philo->index, str);
+	pthread_mutex_unlock(&philo->data->mx_output);
+	return ;
+}
+
+void mono_philo (t_philo *philo)
+{
+	pthread_mutex_lock(&philo->mx_left_fork);
+	print_philo(philo, "has taken his left fork\n");
+	usleep(philo->data->death_time * 1000);
+	pthread_mutex_unlock(&philo->mx_left_fork);
+	return;
 }

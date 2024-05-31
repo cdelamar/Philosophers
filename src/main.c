@@ -6,11 +6,11 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:29:57 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/30 18:55:34 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/31 00:02:34 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../includes/philo.h"
 
 // TODO : FIX (bigger numbers than 2147483647 are passing sometimes)
 // WARNING : OVERFLOW NOT HANDLED
@@ -74,6 +74,7 @@ int	main(int argc, char **argv)
 	pthread_create(&data.death_monitor, NULL, monitoring, (void *)philo);
 	thread_launcher(&data, philo);
 	pthread_join(data.death_monitor, NULL);
+	ft_free(philo, &data);
 	free(philo);
 	return (EXIT_SUCCESS);
 }
