@@ -6,15 +6,11 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:29:57 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/31 00:02:34 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/31 18:03:08 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
-
-// TODO : FIX (bigger numbers than 2147483647 are passing sometimes)
-// WARNING : OVERFLOW NOT HANDLED
-
 
 void	nobody_died(t_philo *philo)
 {
@@ -30,7 +26,10 @@ void	nobody_died(t_philo *philo)
 		pthread_mutex_lock(&philo[i].data->mx_die);
 		if (ft_time() - philo[i].last_eat_time >= philo->data->death_time)
 		{
-			philo[i].state = DIE;
+			// pthread_mutex_lock(&philo[i].data->mx_reaper);
+			// philo[i].state = DIE;
+			// pthread_mutex_unlock(&philo[i].data->mx_reaper);
+			philo_died(&philo[i]);
 			philo[i].data->death = true;
 			pthread_mutex_unlock(&philo[i].data->mx_die);
 			death_print(&philo[i], "has died\n");
@@ -42,6 +41,13 @@ void	nobody_died(t_philo *philo)
 			i = 0;
 	}
 	return ;
+}
+
+void	philo_died(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->data->mx_reaper);
+	philo->state = DIE;
+	pthread_mutex_unlock(&philo->data->mx_reaper);
 }
 
 void	*monitoring(void *arg)
@@ -71,6 +77,11 @@ int	main(int argc, char **argv)
 	}
 	init_data(argc, argv, &data);
 	philo = init_philo(&data);
+	if (data.philo_nb == 1)
+	{
+		mono_philo(philo);
+		return (EXIT_SUCCESS);
+	}
 	pthread_create(&data.death_monitor, NULL, monitoring, (void *)philo);
 	thread_launcher(&data, philo);
 	pthread_join(data.death_monitor, NULL);

@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:30:01 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/30 23:38:13 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/05/31 16:54:11 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,34 +30,15 @@ int	is_number(char c)
 	return (c >= '0' && c <= '9');
 }
 
-bool	valid_inputs(int argc, char **argv)
-{
-	int	i;
-	int	j;
-
-	i = 1;
-	while (i < argc)
-	{
-		j = 0;
-		while (argv[i][j])
-		{
-			if (is_number(argv[i][j]) == 0)
-				return (false);
-			j++;
-		}
-		i++;
-	}
-	return (true);
-}
-
 bool	min_max_value(int argc, char **argv)
 {
 	int	i;
 
-	i = 0;
+	i = 1;
 	while (i < argc)
 	{
-		if (atoi(argv[i]) > 2147483647)
+		if (ft_atol(argv[i]) > MAX
+			|| ft_atol(argv[i]) < MIN || ft_atol(argv[i]) == 0)
 			return (false);
 		i++;
 	}
@@ -81,29 +62,6 @@ uint64_t	ft_atoi64_t(const char *nptr)
 		i++;
 	}
 	return (num);
-}
-
-int	ft_atoi(const char *nptr)
-{
-	int	sign;
-	int	num;
-
-	sign = 1;
-	num = 0;
-	while ((*nptr >= 9 && *nptr <= 13) || *nptr == ' ')
-		nptr++;
-	if (*nptr == '-' || *nptr == '+')
-	{
-		if (*nptr == '-')
-			sign = -1;
-		nptr++;
-	}
-	while (*nptr >= '0' && *nptr <= '9')
-	{
-		num = num * 10 + (*nptr - '0');
-		nptr++;
-	}
-	return (num * sign);
 }
 
 long	ft_atol(const char *str)
