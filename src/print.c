@@ -22,26 +22,6 @@ uint64_t	ft_time(void)
 	return (output);
 }
 
-void	thread_launcher(t_data *data, t_philo *philo)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (i < data->philo_nb)
-	{
-		pthread_create(&philo[i].thid, NULL, routine, &philo[i]);
-		usleep(1000); // a voir //
-		i++;
-	}
-	i = 0;
-	while (i < data->philo_nb)
-	{
-		pthread_join(philo[i].thid, NULL);
-		i++;
-	}
-	return ;
-}
-
 void	print_philo(t_philo *philo, char *str)
 {
 	uint64_t	time;

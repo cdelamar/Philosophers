@@ -79,10 +79,29 @@ void	nobody_died(t_philo *philo)
 			death_print(&philo[i], "has died\n");
 			return ;
 		}
-		pthread_mutex_unlock(&philo[i].data->mx_die);
+		// pthread_mutex_unlock(&philo[i].data->mx_die);
 		i++;
 		if (i >= philo->data->philo_nb)
 			i = 0;
+	}
+	return ;
+}
+void	thread_launcher(t_data *data, t_philo *philo)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (i < data->philo_nb)
+	{
+		pthread_create(&philo[i].thid, NULL, routine, &philo[i]);
+		usleep(1000); // a voir //
+		i++;
+	}
+	i = 0;
+	while (i < data->philo_nb)
+	{
+		pthread_join(philo[i].thid, NULL);
+		i++;
 	}
 	return ;
 }
