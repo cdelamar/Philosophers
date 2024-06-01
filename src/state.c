@@ -41,3 +41,10 @@ int	thinking(t_philo *philo)
 	// pthread_mutex_unlock(&philo->data->mx_state);
 	return (0);
 }
+
+void	dying(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->data->mx_reaper);
+	philo->state = DIE;
+	pthread_mutex_unlock(&philo->data->mx_reaper);
+}

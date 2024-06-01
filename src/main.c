@@ -12,51 +12,22 @@
 
 #include "../includes/philo.h"
 
-void	nobody_died(t_philo *philo)
+// --fair-sched=yes
+
+void	ft_free(t_philo *philo, t_data *data)
 {
 	unsigned int	i;
 
 	i = 0;
-	while (1)
+	while (i < philo->data->philo_nb)
 	{
-		pthread_mutex_lock(&philo[i].data->mx_finished);
-		if (philo->data->philo_finished >= philo->data->philo_nb)
-			return ;
-		pthread_mutex_unlock(&philo[i].data->mx_finished);
-		pthread_mutex_lock(&philo[i].data->mx_die);
-		if (ft_time() - philo[i].last_eat_time >= philo->data->death_time)
-		{
-			// pthread_mutex_lock(&philo[i].data->mx_reaper);
-			// philo[i].state = DIE;
-			// pthread_mutex_unlock(&philo[i].data->mx_reaper);
-			philo_died(&philo[i]);
-			philo[i].data->death = true;
-			pthread_mutex_unlock(&philo[i].data->mx_die);
-			death_print(&philo[i], "has died\n");
-			return ;
-		}
-		pthread_mutex_unlock(&philo[i].data->mx_die);
+		pthread_mutex_destroy(&philo[i].mx_left_fork);
 		i++;
-		if (i >= philo->data->philo_nb)
-			i = 0;
 	}
-	return ;
-}
-
-void	philo_died(t_philo *philo)
-{
-	pthread_mutex_lock(&philo->data->mx_reaper);
-	philo->state = DIE;
-	pthread_mutex_unlock(&philo->data->mx_reaper);
-}
-
-void	*monitoring(void *arg)
-{
-	t_philo	*philo;
-
-	philo = (t_philo *)arg;
-	nobody_died(philo);
-	return (NULL);
+	pthread_mutex_destroy(&data->mx_die);
+	pthread_mutex_destroy(&data->mx_output);
+	pthread_mutex_destroy(&data->mx_state);
+	pthread_mutex_destroy(&data->mx_finished);
 }
 
 void	error_message(char *str)

@@ -68,8 +68,8 @@ void	init_data(int argc, char **argv, t_data *data)
 	data->philo_finished = 0;
 	if (argc == 6)
 		data->meal_nb = ft_atol(argv[5]);
-	pthread_mutex_init(&data->mx_finished, NULL);
 	data->start_time = ft_time();
+	pthread_mutex_init(&data->mx_finished, NULL);
 	pthread_mutex_init(&data->mx_output, NULL);
 	pthread_mutex_init(&data->mx_die, NULL);
 	pthread_mutex_init(&data->mx_state, NULL);

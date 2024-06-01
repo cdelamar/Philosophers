@@ -22,12 +22,11 @@ LFLAGS =	-pthread #-fsanitize=thread,address \
 SRC_DIR = src/
 OBJ_DIR = obj/
 FILES =	main \
-		forks\
+		mutex_checker\
 		init \
 		misc \
 		state \
 		routine \
-		meal \
 		thread
 
 SRCS = $(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))

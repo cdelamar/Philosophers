@@ -50,39 +50,39 @@ int	check_loop(t_philo *philo)
 	return (0);
 }
 
-int	eating_and_check_meal(t_philo *philo)
+void	*monitoring(void *arg)
 {
-	eating(philo);
-	philo->meal++;
-	if (philo->meal == philo->meal_nb && philo->meal_nb != -1)
-	{
-		pthread_mutex_lock(&philo->data->mx_finished);
-		philo->data->philo_finished++;
-		pthread_mutex_unlock(&philo->data->mx_finished);
-		return (1);
-	}
-	return (0);
+	t_philo	*philo;
+
+	philo = (t_philo *)arg;
+	nobody_died(philo);
+	return (NULL);
 }
 
-int	check_eat_state(t_philo *philo)
+void	nobody_died(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->data->mx_die);
-	if (philo->data->death == true)
+	unsigned int	i;
+
+	i = 0;
+	while (1)
 	{
-		pthread_mutex_unlock(&philo->data->mx_die);
-		return (1);
+		// pthread_mutex_lock(&philo[i].data->mx_finished);
+		if (philo->data->philo_finished >= philo->data->philo_nb) // mutex unlock ?
+			return ;
+		// pthread_mutex_unlock(&philo[i].data->mx_finished);
+		// pthread_mutex_lock(&philo[i].data->mx_die);
+		if (ft_time() - philo[i].last_eat_time >= philo->data->death_time)
+		{
+			dying(&philo[i]); // are the value modified ?
+			philo[i].data->death = true;
+			// pthread_mutex_unlock(&philo[i].data->mx_die);
+			death_print(&philo[i], "has died\n");
+			return ;
+		}
+		pthread_mutex_unlock(&philo[i].data->mx_die);
+		i++;
+		if (i >= philo->data->philo_nb)
+			i = 0;
 	}
-	pthread_mutex_unlock(&philo->data->mx_die);
-	sleeping(philo);
-	return (0);
-}
-
-int	death_check(t_philo *philo)
-{
-	bool	output;
-
-	pthread_mutex_lock(&philo->data->mx_die);
-	output = philo->data->death;
-	pthread_mutex_unlock(&philo->data->mx_die);
-	return (output);
+	return ;
 }

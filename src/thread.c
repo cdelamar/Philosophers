@@ -30,7 +30,7 @@ void	thread_launcher(t_data *data, t_philo *philo)
 	while (i < data->philo_nb)
 	{
 		pthread_create(&philo[i].thid, NULL, routine, &philo[i]);
-		usleep(1000);
+		usleep(1000); // a voir //
 		i++;
 	}
 	i = 0;

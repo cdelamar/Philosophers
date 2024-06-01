@@ -95,11 +95,9 @@ int			eating(t_philo *philo);
 int			sleeping(t_philo *philo);
 long		ft_atol(const char *str);
 int			thinking(t_philo *philo);
-int			dying(t_philo *philo);
 void		print_philo(t_philo *philo, char *str);
 void		death_print(t_philo *philo, char *str);
 void		nobody_died(t_philo *philo);
-void		meal_finished(t_philo *philo);
 void		increment_meal(t_philo *philo);
 int			meals_complete(t_philo *philo);
 void		*monitoring(void *arg);
@@ -109,7 +107,6 @@ void		ft_free(t_philo *philo, t_data *data);
 void		mono_philo(t_philo *philo);
 int			death_check(t_philo *philo);
 int			check_loop(t_philo *philo);
-void		philo_died(t_philo *philo);
-
+void		dying(t_philo *philo);
 
 #endif
