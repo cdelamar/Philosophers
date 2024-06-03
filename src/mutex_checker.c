@@ -21,7 +21,10 @@ int	take_fork(t_philo *philo)
 
 int	eating_and_check_meal(t_philo *philo)
 {
+	pthread_mutex_lock(&philo->last_eat);
 	eating(philo);
+	pthread_mutex_unlock(&philo->last_eat);
+
 	philo->meal++;
 	if (philo->meal == philo->meal_nb && philo->meal_nb != -1)
 	{

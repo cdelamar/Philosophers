@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:30:08 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/06/03 09:02:10 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/06/03 10:26:57 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_philo
 	pthread_t		thid;
 	pthread_mutex_t	mx_left_fork;
 	pthread_mutex_t	*mx_right_fork;
+	pthread_mutex_t	last_eat;
 	t_state			state;
 	t_data			*data;
 }	t_philo;

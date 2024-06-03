@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 00:27:43 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/06/03 09:13:07 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/06/03 10:36:51 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@ int	check_loop(t_philo *philo)
 		if (eating_and_check_meal(philo))
 			return (1);
 	}
-	pthread_mutex_lock(&philo->data->mx_state);
+	// pthread_mutex_lock(&philo->data->mx_state); // si lock ici > QUE CA MEURT
 	if (philo->state == EAT && check_eat_state(philo))
 	{
-		pthread_mutex_unlock(&philo->data->mx_state);
+		// pthread_mutex_unlock(&philo->data->mx_state);
+
 		return (1);
 	}
 	else
