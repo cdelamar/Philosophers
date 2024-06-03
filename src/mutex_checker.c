@@ -26,7 +26,7 @@ int	eating_and_check_meal(t_philo *philo)
 	if (philo->meal == philo->meal_nb && philo->meal_nb != -1)
 	{
 		pthread_mutex_lock(&philo->data->mx_finished);
-		philo->data->philo_finished++;
+		philo->data->meals_completed++;
 		pthread_mutex_unlock(&philo->data->mx_finished);
 		return (1);
 	}
@@ -42,7 +42,7 @@ int	check_eat_state(t_philo *philo)
 		return (1);
 	}
 	pthread_mutex_unlock(&philo->data->mx_die);
-	sleeping(philo);
+	sleeping(philo); // peut etre sortir ca de la fonction
 	return (0);
 }
 

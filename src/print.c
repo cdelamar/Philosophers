@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   thread.c                                           :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 23:45:17 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/31 17:27:15 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/06/03 09:08:40 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ void	print_philo(t_philo *philo, char *str)
 	pthread_mutex_lock(&philo->data->mx_die);
 	if (philo->data->death == false)
 	{
+		pthread_mutex_unlock(&philo->data->mx_die);
 		time = ft_time() - philo->data->start_time;
 		pthread_mutex_lock(&philo->data->mx_output);
 		printf("%lu : philo %d %s", time, philo->index, str);
 		pthread_mutex_unlock(&philo->data->mx_output);
-		pthread_mutex_unlock(&philo->data->mx_die);
 
 	}
 	else
@@ -49,6 +49,7 @@ void	death_print(t_philo *philo, char *str)
 
 	time = ft_time() - philo->data->start_time;
 	pthread_mutex_lock(&philo->data->mx_output);
+	// printf(" ---- > ft_time() - philo[i].last_eat_time [%ld] >= philo->data->death_time [[%ld]] \n\n", (ft_time() - philo->last_eat_time), philo->data->death_time);
 	printf("%lu : philo %d %s", time, philo->index, str);
 	pthread_mutex_unlock(&philo->data->mx_output);
 	return ;

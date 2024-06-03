@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:29:54 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/31 17:58:58 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/06/03 09:22:18 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	init_data(int argc, char **argv, t_data *data)
 	data->eat_time = ft_atoi64_t(argv[3]);
 	data->sleep_time = ft_atoi64_t(argv[4]);
 	data->meal_nb = -1;
-	data->philo_finished = 0;
+	data->meals_completed = 0;
 	if (argc == 6)
 		data->meal_nb = ft_atol(argv[5]);
 	data->start_time = ft_time();
@@ -84,7 +84,7 @@ t_philo	*init_philo(t_data *data)
 	t_philo			*philo;
 
 	i = 0;
-	philo = malloc(sizeof(t_philo) * data->philo_nb + 1);
+	philo = malloc(sizeof(t_philo) * data->philo_nb);
 	while (i < data->philo_nb)
 	{
 		philo[i] = create_philo(data, i);

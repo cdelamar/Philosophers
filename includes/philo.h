@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:30:08 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/31 18:03:03 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/06/03 09:02:10 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_data
 	pthread_t		death_monitor;
 	pthread_t		meal_monitor;
 	long			philo_nb;
-	unsigned int	philo_finished;
+	unsigned int	meals_completed;
 	uint64_t		death_time;
 	uint64_t		eat_time;
 	uint64_t		sleep_time;

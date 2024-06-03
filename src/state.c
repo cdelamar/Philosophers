@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 05:55:22 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/31 18:07:38 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/06/03 08:59:50 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	sleeping(t_philo *philo)
 	// pthread_mutex_lock(&philo->data->mx_state);
 	philo->state = SLEEP;
 	print_philo(philo, "is sleeping\n");
-	usleep(1000 * philo->data->sleep_time);
+	usleep(1000 * philo->data->sleep_time); // * 1000 ?
 	// pthread_mutex_unlock(&philo->data->mx_state);
 	return (0);
 }

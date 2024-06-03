@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 00:27:43 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/31 17:56:47 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/06/03 09:13:07 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ int	check_loop(t_philo *philo)
 {
 	if (death_check(philo))
 		return (1);
-	if (take_fork(philo) == 1)
+	if (take_fork(philo))
 	{
-		if (eating_and_check_meal(philo) == 1)
+		if (eating_and_check_meal(philo))
 			return (1);
 	}
 	pthread_mutex_lock(&philo->data->mx_state);
-	if (philo->state == EAT && check_eat_state(philo) == 1)
+	if (philo->state == EAT && check_eat_state(philo))
 	{
 		pthread_mutex_unlock(&philo->data->mx_state);
 		return (1);
@@ -59,7 +59,7 @@ void	*monitoring(void *arg)
 	return (NULL);
 }
 
-void	nobody_died(t_philo *philo)
+void	nobody_died(t_philo *philo) // TODO
 {
 	unsigned int	i;
 
@@ -67,7 +67,7 @@ void	nobody_died(t_philo *philo)
 	while (1)
 	{
 		// pthread_mutex_lock(&philo[i].data->mx_finished);
-		if (philo->data->philo_finished >= philo->data->philo_nb) // mutex unlock ?
+		if (philo->data->meals_completed >= philo->data->philo_nb) // mutex unlock ?
 			return ;
 		// pthread_mutex_unlock(&philo[i].data->mx_finished);
 		// pthread_mutex_lock(&philo[i].data->mx_die);

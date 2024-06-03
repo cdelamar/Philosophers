@@ -26,7 +26,7 @@ int	eating_and_check_meal(t_philo *philo)
 	if (philo->meal == philo->meal_nb && philo->meal_nb != -1)
 	{
 		pthread_mutex_lock(&philo->data->mx_finished);
-		philo->data->philo_finished++;
+		philo->data->meals_completed++;
 		pthread_mutex_unlock(&philo->data->mx_finished);
 		return (1);
 	}
