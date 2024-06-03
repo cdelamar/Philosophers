@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 23:45:17 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/06/03 10:32:23 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/06/03 15:43:01 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	print_philo(t_philo *philo, char *str)
 		pthread_mutex_lock(&philo->data->mx_output);
 		printf("%lu : philo %d %s", time, philo->index, str);
 		pthread_mutex_unlock(&philo->data->mx_output);
-
+		return ;
 	}
 	else
 	{
@@ -49,7 +49,6 @@ void	death_print(t_philo *philo, char *str)
 
 	time = ft_time() - philo->data->start_time;
 	pthread_mutex_lock(&philo->data->mx_output);
-	// printf(" ---- > ft_time() - philo[i].last_eat_time [%ld] >= philo->data->death_time [[%ld]] \n\n", (ft_time() - philo->last_eat_time), philo->data->death_time);
 	printf("%lu : philo %d %s", time, philo->index, str);
 	pthread_mutex_unlock(&philo->data->mx_output);
 	return ;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mutex_checker.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/03 15:30:39 by cdelamar          #+#    #+#             */
+/*   Updated: 2024/06/03 15:32:05 by cdelamar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/philo.h"
 
 int	take_fork(t_philo *philo)
@@ -24,7 +36,6 @@ int	eating_and_check_meal(t_philo *philo)
 	pthread_mutex_lock(&philo->last_eat);
 	eating(philo);
 	pthread_mutex_unlock(&philo->last_eat);
-
 	philo->meal++;
 	if (philo->meal == philo->meal_nb && philo->meal_nb != -1)
 	{
@@ -45,7 +56,7 @@ int	check_eat_state(t_philo *philo)
 		return (1);
 	}
 	pthread_mutex_unlock(&philo->data->mx_die);
-	sleeping(philo); // peut etre sortir ca de la fonction
+	sleeping(philo);
 	return (0);
 }
 

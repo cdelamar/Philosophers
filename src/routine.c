@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 00:27:43 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/06/03 10:36:51 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/06/03 15:44:45 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,10 @@ int	check_loop(t_philo *philo)
 		if (eating_and_check_meal(philo))
 			return (1);
 	}
-	// pthread_mutex_lock(&philo->data->mx_state); // si lock ici > QUE CA MEURT
 	if (philo->state == EAT && check_eat_state(philo))
-	{
-		// pthread_mutex_unlock(&philo->data->mx_state);
-
 		return (1);
-	}
 	else
 	{
-		pthread_mutex_unlock(&philo->data->mx_state);
 		if (death_check(philo) == true)
 			return (1);
 		thinking(philo);
@@ -67,26 +61,24 @@ void	nobody_died(t_philo *philo) // TODO
 	i = 0;
 	while (1)
 	{
-		// pthread_mutex_lock(&philo[i].data->mx_finished);
-		if (philo->data->meals_completed >= philo->data->philo_nb) // mutex unlock ?
+		if (philo->data->meals_completed >= philo->data->philo_nb)
 			return ;
-		// pthread_mutex_unlock(&philo[i].data->mx_finished);
-		// pthread_mutex_lock(&philo[i].data->mx_die);
 		if (ft_time() - philo[i].last_eat_time >= philo->data->death_time)
 		{
-			dying(&philo[i]); // are the value modified ?
+			dying(&philo[i]);
+			pthread_mutex_lock(&philo->data->mx_die);
 			philo[i].data->death = true;
-			// pthread_mutex_unlock(&philo[i].data->mx_die);
+			pthread_mutex_unlock(&philo->data->mx_die);
 			death_print(&philo[i], "has died\n");
 			return ;
 		}
-		// pthread_mutex_unlock(&philo[i].data->mx_die);
 		i++;
 		if (i >= philo->data->philo_nb)
 			i = 0;
 	}
 	return ;
 }
+
 void	thread_launcher(t_data *data, t_philo *philo)
 {
 	unsigned int	i;
@@ -95,7 +87,7 @@ void	thread_launcher(t_data *data, t_philo *philo)
 	while (i < data->philo_nb)
 	{
 		pthread_create(&philo[i].thid, NULL, routine, &philo[i]);
-		usleep(1000); // a voir //
+		usleep(1000);
 		i++;
 	}
 	i = 0;

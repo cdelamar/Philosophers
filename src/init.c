@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:29:54 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/06/03 10:29:18 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/06/03 15:27:11 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	init_data(int argc, char **argv, t_data *data)
 	pthread_mutex_init(&data->mx_finished, NULL);
 	pthread_mutex_init(&data->mx_output, NULL);
 	pthread_mutex_init(&data->mx_die, NULL);
-	pthread_mutex_init(&data->mx_state, NULL);
 	pthread_mutex_init(&data->mx_reaper, NULL);
 	data->death = false;
 	return ;
