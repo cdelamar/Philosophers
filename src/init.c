@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:29:54 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/06/03 15:27:11 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/06/03 17:12:12 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ bool	valid_inputs(int argc, char **argv)
 	while (i < argc)
 	{
 		j = 0;
+		while (argv[i][j] == '0')
+			j++;
+		if (!argv[i][j] || ft_strlen(argv[i] + j) >= 10)
+			return (false);
 		while (argv[i][j])
 		{
 			if (is_number(argv[i][j]) == 0)

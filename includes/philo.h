@@ -6,7 +6,7 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:30:08 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/06/03 10:26:57 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/06/03 17:16:54 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,6 @@ void		mono_philo(t_philo *philo);
 int			death_check(t_philo *philo);
 int			check_loop(t_philo *philo);
 void		dying(t_philo *philo);
+int			ft_strlen(char *str);
 
 #endif

@@ -6,13 +6,22 @@
 /*   By: cdelamar <cdelamar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:29:57 by cdelamar          #+#    #+#             */
-/*   Updated: 2024/05/31 18:03:08 by cdelamar         ###   ########.fr       */
+/*   Updated: 2024/06/03 17:17:17 by cdelamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
 // --fair-sched=yes
+int	ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str && str[i])
+		i++;
+	return (i);
+}
 
 void	ft_free(t_philo *philo, t_data *data)
 {
@@ -26,8 +35,8 @@ void	ft_free(t_philo *philo, t_data *data)
 	}
 	pthread_mutex_destroy(&data->mx_die);
 	pthread_mutex_destroy(&data->mx_output);
-	pthread_mutex_destroy(&data->mx_state);
 	pthread_mutex_destroy(&data->mx_finished);
+	pthread_mutex_destroy(&data->mx_reaper);
 }
 
 void	error_message(char *str)
